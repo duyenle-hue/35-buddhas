@@ -1,0 +1,286 @@
+# 35 Buddhas — Research Notes
+
+Oct 21, 2026 · Team Resources D05
+
+## What these are
+
+Your 35 photos are the 35 Confession Buddhas (Tam Thập Ngũ Phật; Sanskrit: the Buddhas of the Triskandhaka or "Three Heaps" sutra). They are recited and bowed to in one of Mahāyāna Buddhism's best-known purification practices: you name each Buddha, take refuge, and confess and let go of harmful actions. Shakyamuni (Thích Ca) is #1 and leads the other 34. The list is the same in Vietnamese, Chinese and Tibetan practice; only the art and ritual around it differ.
+
+The set is complete: 35 of 35, numbered in the standard order. There is no traditional 36th Buddha in this list (see "Things to fix or decide").
+
+## Where they come from
+
+The names come from the Upāli chapter (Ưu Ba Ly Hội) of the Mahāratnakūṭa (Kinh Đại Bảo Tích, Taishō T310, ch. 24), also translated on its own as the Quyết Định Tỳ Ni Kinh (T325). In it, the Buddha teaches that a bodhisattva who has broken precepts should recite these 35 names day and night to purify the fault.
+
+- Chinese/Vietnamese line: the Kinh Quán Hư Không Tạng Bồ Tát (T409) tells practitioners to bow to the Buddhas of the ten directions and recite the 35 names, and itself notes the names come from the Upāli chapter. The 35 later became the second half of the Vietnamese Hồng Danh Sám Hối liturgy.
+- Tibetan line: the same text is called the Sūtra of the Three Heaps (confession, rejoicing, dedication). Nāgārjuna and later Tsongkhapa wrote visualization manuals, which is where the colors, hand gestures and objects in your paintings come from.
+- None of the Chinese sutras I checked give each Buddha a direction or a named world. That layer comes from the Tibetan visualization (next section).
+
+Names vary slightly by translation. One example: #35 is "Bảo Liên Hoa Thiện Trụ Ta La Thọ Vương" (sāla-tree king) in the Chinese chant but "Tu Di Sơn Vương" (Mount Meru king) in your set. Both render the same Sanskrit, Ratnapadma-supratiṣṭhita-śailendrarāja. Śailendra means "lord of mountains", so your set's version is closer to the Sanskrit.
+
+## How your photo set is organized
+
+Your images are Tibetan-style paintings with Vietnamese captions, and each card has three layers a website can use.
+
+1. Title — "Nam Mô [direction] [world] Thế Giới [name] Phật". The direction and world (in italics on the card) place each Buddha in a pure land around Shakyamuni.
+2. The painting — a distinct body color, hand gesture, and often a held object (sword, banner, tree, lotus, jewel, a stupa, a jeweled mountain on the head for #35). This follows the Nāgārjuna-style system in which Buddhas hold objects. Below the throne sit the five sense offerings: mirror (sight), lute (sound), conch of perfume (smell), fruit (taste) and silk (touch).
+3. Caption — "Quy y Ngài, con diệt được…": what bowing to that Buddha is said to purify. These come from the Tibetan commentarial tradition, not from the sutra itself.
+
+The directions follow a fixed cycle around Shakyamuni at the center: Above → E → SE → S → SW → W → NW → N → NE → Below. Three full rounds cover #2–#31; the last four take only the main points.
+
+Direction        | Round 1 | Round 2 | Round 3 | Final 4
+---------------- | ------- | ------- | ------- | -------
+Thượng (Above)   | 2       | 12      | 22      |
+Đông (East)      | 3       | 13      | 23      | 32
+Đông Nam (SE)    | 4       | 14      | 24      |
+Nam (South)      | 5       | 15      | 25      | 33
+Tây Nam (SW)     | 6       | 16      | 26      |
+Tây (West)       | 7       | 17      | 27      | 34
+Tây Bắc (NW)     | 8       | 18      | 28      |
+Bắc (North)      | 9       | 19      | 29      | 35
+Đông Bắc (NE)    | 10      | 20      | 30      |
+Hạ (Below)       | 11      | 21      | 31      |
+
+This exact layout appears in Tibetan 35-Buddha sādhanas. I could not find a written source for the Vietnamese world names (e.g. "Hư Không Tạng Thế Giới"); they are likely from the Vietnamese publisher of this set. Worth asking where the cards came from.
+
+## The 35 at a glance
+
+One entry per card. Sanskrit and English follow the Tibetan list on Wikipedia; colors and objects are my reading of your paintings; "Card" is transcribed from each card ("Quy y Ngài, con diệt được…").
+
+1. Thích Ca Mâu Ni · 釋迦牟尼
+   Sanskrit: Śākyamuni — Sage of the Śākya clan
+   Direction · World: Center · Sa Bà
+   Color · object: Gold · earth-touching, alms bowl
+   Card: nghiệp bất thiện trên 10.000 kiếp
+
+2. Kim Cương Bất Hoại · 金剛不壞
+   Sanskrit: Vajrapramardī — Indestructible vajra
+   Direction · World: Thượng · Hư Không Tạng
+   Color · object: Blue · vajra
+   Card: nghiệp bất thiện trên 10.000 kiếp
+
+3. Bảo Quang · 寶光
+   Sanskrit: Ratnārciṣ — Precious radiant light
+   Direction · World: Đông · Bảo Nghiêm
+   Color · object: White · jewel, sun disc
+   Card: nghiệp bất thiện trên 25.000 kiếp
+
+4. Long Tôn Vương · 龍尊王
+   Sanskrit: Nāgeśvararāja — King, lord of the nāgas
+   Direction · World: Đông Nam · Long Biến Mãn
+   Color · object: Blue · tree with nāga
+   Card: nghiệp bất thiện trên 8 kiếp
+
+5. Tinh Tấn Quân · 精進軍
+   Sanskrit: Vīrasena — Army of heroes
+   Direction · World: Nam · Dũng Biến Mãn
+   Color · object: Yellow · sword
+   Card: ác nghiệp thuộc về khẩu
+
+6. Tinh Tấn Hỉ · 精進喜
+   Sanskrit: Vīranandī — Delighted hero
+   Direction · World: Tây Nam · Hoan Hỉ
+   Color · object: Orange · lotus, jewel
+   Card: ác nghiệp thuộc về ý
+
+7. Bảo Hỏa · 寶火
+   Sanskrit: Ratnāgni — Jewel fire
+   Direction · World: Tây · Biến Tịnh Quang
+   Color · object: Red · flaming jewel
+   Card: tội phá hòa hợp Tăng
+
+8. Bảo Nguyệt Quang · 寶月光
+   Sanskrit: Ratnacandraprabha — Jewel moonlight
+   Direction · World: Tây Bắc · Diệu Quang
+   Color · object: White · flaming jewel, moon
+   Card: nghiệp bất thiện trên 1 kiếp
+
+9. Hiện Vô Ngu · 現無愚
+   Sanskrit: Amoghadarśī — Meaningful to behold
+   Direction · World: Bắc · Cổ Thanh Âm
+   Color · object: Green · earth-touching
+   Card: tội hủy báng đại lực Bồ Tát
+
+10. Bảo Nguyệt · 寶月
+   Sanskrit: Ratnacandra — Jewel moon
+   Direction · World: Đông Bắc · Quang Nghiêm
+   Color · object: White · jewel, moon disc
+   Card: tội giết mẹ
+
+11. Vô Cấu · 無垢
+   Sanskrit: Vimala — Stainless
+   Direction · World: Hạ · Trần Biến Mãn
+   Color · object: Pale grey · mirror
+   Card: tội giết cha
+
+12. Dũng Thí · 勇施
+   Sanskrit: Śūradatta — Heroic giving
+   Direction · World: Thượng · Quang Thắng
+   Color · object: White · fruiting tree
+   Card: tội giết A La Hán
+
+13. Thanh Tịnh · 清淨
+   Sanskrit: Brahmā — The pure one
+   Direction · World: Đông · Vô Ngại
+   Color · object: Orange · lotus, jewel
+   Card: tội ác tâm làm thân Phật chảy máu
+
+14. Thanh Tịnh Thí · 清淨施
+   Sanskrit: Brahmadatta — Giving of purity
+   Direction · World: Đông Nam · Vô Ưu
+   Color · object: Yellow · lotus, jewel
+   Card: nghiệp bất thiện trên 10.000 kiếp
+
+15. Ta Lưu Na · 娑留那
+   Sanskrit: Varuṇa — Water god (sound-transliterated)
+   Direction · World: Nam · Vô Cấu
+   Color · object: Blue · Dharma wheel
+   Card: tội làm ô nhiễm Tỳ Khưu Ni hoặc A La Hán
+
+16. Thủy Thiên · 水天
+   Sanskrit: Varuṇadeva — God of the water gods
+   Direction · World: Tây Nam · Viên Tịnh
+   Color · object: White · teaching gesture
+   Card: tội giết Bồ Tát
+
+17. Kiên Đức · 堅德
+   Sanskrit: Bhadraśrī — Glorious goodness
+   Direction · World: Tây · Diệu Lạc
+   Color · object: Red · tree, lotus
+   Card: tội giết các bậc hữu học
+
+18. Chiên Đàn Công Đức · 栴檀功德
+   Sanskrit: Candanaśrī — Glorious sandalwood
+   Direction · World: Tây Bắc · Hương Biến Mãn
+   Color · object: Red-orange · sandalwood branch
+   Card: tội trộm vật của Tăng
+
+19. Vô Lượng Cúc Quang · 無量掬光
+   Sanskrit: Anantatejas — Infinite splendour
+   Direction · World: Bắc · Hữu Lực
+   Color · object: Red · radiant jewel in lap
+   Card: tội hủy phá tháp Phật
+
+20. Quang Đức · 光德
+   Sanskrit: Prabhāśrī — Glorious light
+   Direction · World: Đông Bắc · Diệu Nghĩa
+   Color · object: White · jewel crown
+   Card: ác nghiệp do sân hận
+
+21. Vô Ưu Đức · 無憂德
+   Sanskrit: Aśokaśrī — Sorrowless glory
+   Direction · World: Hạ · Vô Chướng
+   Color · object: Pale blue · aśoka tree
+   Card: ác nghiệp do tham ái
+
+22. Na La Diên · 那羅延
+   Sanskrit: Nārāyaṇa — Nārāyaṇa (a name of great strength)
+   Direction · World: Thượng · Ly Trước
+   Color · object: Blue · stupa, lotus
+   Card: nghiệp bất thiện trên 10.000 kiếp
+
+23. Công Đức Hoa · 功德華
+   Sanskrit: Kusumaśrī — Glorious flower
+   Direction · World: Đông · Trưởng Hoa
+   Color · object: Yellow · flowering tree
+   Card: nghiệp bất thiện trên 100.000 kiếp
+
+24. Tịnh Quang Du Hí Thần Thông · 清淨光遊戲神通
+   Sanskrit: Brahmajyotir-vikrīḍitābhijña — Pure light rays, playful mastery of powers
+   Direction · World: Đông Nam · Phạm Biến
+   Color · object: White · lotus, white fly-whisk
+   Card: nghiệp bất thiện trên 1.000 kiếp
+
+25. Liên Hoa Quang Du Hí Thần Thông · 蓮華光遊戲神通
+   Sanskrit: Padmajyotir-vikrīḍitābhijña — Lotus light rays, playful mastery of powers
+   Direction · World: Nam · Liên Hoa Trang Nghiêm
+   Color · object: Red · lotus
+   Card: nghiệp bất thiện trên 7 kiếp
+
+26. Tài Công Đức · 財功德
+   Sanskrit: Dhanaśrī — Glorious wealth
+   Direction · World: Tây Nam · Bảo Trang Nghiêm
+   Color · object: Pink · jewel in bowl
+   Card: ác nghiệp do tập khí
+
+27. Đức Niệm · 德念
+   Sanskrit: Smṛtiśrī — Glorious mindfulness
+   Direction · World: Tây · Viên Tịnh
+   Color · object: Yellow · sword, book
+   Card: ác nghiệp thuộc về thân
+
+28. Thiện Danh Xưng Công Đức · 善名稱功德
+   Sanskrit: Suparikīrtita-nāmadheyaśrī — Glory of a well-renowned name
+   Direction · World: Tây Bắc · Vô Tướng
+   Color · object: Green · white jewel at heart
+   Card: tội không làm đúng ý Phật
+
+29. Hồng Diệm Đế Tràng Vương · 紅焰帝幢王
+   Sanskrit: Indraketudhvajarāja — King of the victory banner
+   Direction · World: Bắc · Tịnh Căn Lực
+   Color · object: Yellow · red victory banner
+   Card: ác nghiệp do tật đố
+
+30. Thiện Du Bộ Công Đức · 善遊步功德
+   Sanskrit: Suvikrāntaśrī — Glorious one who fully subdues
+   Direction · World: Đông Bắc · Diệu Hỉ
+   Color · object: White · earth-touching
+   Card: tội sai bảo người khác làm ác nghiệp
+
+31. Đấu Chiến Thắng · 鬥戰勝
+   Sanskrit: Yuddhajaya — Victorious in battle
+   Direction · World: Hạ · Ly Vọng
+   Color · object: Dark/black · sword
+   Card: ác nghiệp do kiêu mạn
+
+32. Thiện Du Bộ · 善遊步
+   Sanskrit: Vikrāntagāmī — Who goes in triumph
+   Direction · World: Đông · Đức Thắng
+   Color · object: White · protection gesture
+   Card: tội vu khống
+
+33. Chu Táp Trang Nghiêm Công Đức · 周帀莊嚴功德
+   Sanskrit: Samantāvabhāsavyūhaśrī — Glory adorned with all-pervading light
+   Direction · World: Nam · Quang Nghiêm
+   Color · object: Yellow · jewel, flowering branch
+   Card: tội vui với ác nghiệp
+
+34. Bảo Hoa Du Bộ · 寶華遊步
+   Sanskrit: Ratnapadmavikrāmī — Who strides on jewel lotuses
+   Direction · World: Tây · Thắng Đức
+   Color · object: Red · lotus
+   Card: tội xả bỏ chánh Pháp
+
+35. Tu Di Sơn Vương (Ta La Thọ Vương) · 寶蓮華善住娑羅樹王
+   Sanskrit: Ratnapadma-supratiṣṭhita-śailendrarāja — King, lord of mountains, seated on jewel and lotus
+   Direction · World: Bắc · Diệu Bảo
+   Color · object: Light blue · jeweled Mount Meru held overhead
+   Card: tội phạm các giới nguyện
+
+The captions sort into three kinds, useful for site filters: eons of negative karma (10 cards), harm from body, speech, mind or an emotion such as anger or pride (8), and a specific wrongdoing, from harming parents or the Sangha to slander or abandoning the Dharma (17).
+
+## How people practice
+
+- Vietnamese — Hồng Danh Sám Hối: temples chant 53 Buddha names (from Phổ Quang Phật), then these 35, then "Pháp Giới Tạng Thân A Di Đà Phật", bowing at each name. With the closing vows it comes to 108 prostrations, one for each of the 108 afflictions. Many temples hold it on the 14th and the last day of each lunar month.
+- Tibetan — prostrations to the 35 Buddhas: practitioners visualize the 35 in the sky, recite each name with a full prostration, then the confession prayer. It is a standard daily or preliminary (ngöndro) practice, often done in sets of 100,000 prostrations.
+- Shared idea: the four "powers" of purification — regret, refuge, resolve not to repeat, and a remedy (here, reciting the names). This is the clearest one-line explanation for a general audience.
+
+## Things to fix or decide before the website
+
+[ ] 35 or 36? The tradition has 35. If you want a 36th, the natural candidate is A Di Đà, who closes the Vietnamese chant — but label him as an addition, not part of the 35.
+[ ] Card source: find out who published these cards, both for image credit and to confirm the Vietnamese world names.
+[ ] Filename typos (the cards themselves are correct): #13 "Thấ Giới" → "Thế Giới"; #20 missing "Phương" after "Đông Bắc"; #29 "Hồng Diễm" → "Hồng Diệm" (紅焰); #4, #6, #9, #31 have lowercase words; folder name "35 Budhas" → "Buddhas".
+[ ] Unicode: filenames are stored in decomposed form (NFD). Rename to plain ASCII slugs (e.g. 02-kim-cuong-bat-hoai.jpg) so web links don't break.
+[ ] Framing the captions: "con diệt được… 10.000 kiếp" is devotional language. For a general audience, present it as "traditionally said to purify…".
+[ ] Language: decide Vietnamese-first with English, or both equally; the table above already has both.
+
+## Sources
+
+- Thirty-five Confession Buddhas — Wikipedia: https://en.wikipedia.org/wiki/Thirty-five_Confession_Buddhas
+- Quán Hư Không Tạng Bồ Tát Kinh (T409) — Dharmamitra: https://dharmamitra.org/db/zh/ZH_T13_0409/text
+- Same text — NTI Reader: https://ntireader.org/taisho/t0409.html
+- Thirty-five Confession Buddha sādhana — Gosok Rinpoche (direction layout): https://www.gosokrinpoche.com/thirty-five-confession-buddha-sadhana
+- Hồng Danh Sám Hối — niemphat.vn: https://www.niemphat.vn/downloads/thuyet-phap/nghi-thuc/hong-danh-sam-hoi-thien-anh-lac-suu-tam.pdf
+- Huntington Archive — Śākyamuni with the Confession Buddhas: https://huntingtonarchive.org/Exhibitions/sama/Essays/SL92.049SakConfBudh.html
+- Dharmapala Thangka Centre — 35 Buddhas: https://thangka.de/Gallery-1/Buddhas/1-50/35-buddhas.php
+- Your 35 cards in the "35 Budhas" folder (captions, colors, objects)

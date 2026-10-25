@@ -1,0 +1,664 @@
+<title>GitHub Upload Guide</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Inter:wght@400;500;600;700&display=swap">
+
+<style>
+  /* Layout: single-column steps with sidebar command panels */
+  :root {
+    --bg: #f7f8fa;
+    --surface: #ffffff;
+    --border: #e2e5ea;
+    --fg: #1a1d23;
+    --fg-muted: #6b7280;
+    --accent: #2563eb;
+    --accent-light: #eff4ff;
+    --accent-border: #bfcfff;
+    --code-bg: #1e2330;
+    --code-fg: #e2e8f0;
+    --code-accent: #7dd3fc;
+    --step-done: #059669;
+    --tip-bg: #fefce8;
+    --tip-border: #fbbf24;
+    --warn-bg: #fff7ed;
+    --warn-border: #fb923c;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --border: #2a2d38;
+      --fg: #e8eaf0;
+      --fg-muted: #8b92a5;
+      --accent: #60a5fa;
+      --accent-light: #1a2035;
+      --accent-border: #2a3a60;
+      --code-bg: #0d0f17;
+      --code-fg: #e2e8f0;
+      --code-accent: #7dd3fc;
+      --step-done: #34d399;
+      --tip-bg: #1a1800;
+      --tip-border: #92400e;
+      --warn-bg: #1a1000;
+      --warn-border: #92400e;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --border: #2a2d38;
+    --fg: #e8eaf0;
+    --fg-muted: #8b92a5;
+    --accent: #60a5fa;
+    --accent-light: #1a2035;
+    --accent-border: #2a3a60;
+    --code-bg: #0d0f17;
+    --code-fg: #e2e8f0;
+    --code-accent: #7dd3fc;
+    --step-done: #34d399;
+    --tip-bg: #1a1800;
+    --tip-border: #92400e;
+    --warn-bg: #1a1000;
+    --warn-border: #92400e;
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 40px;
+  }
+
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  /* Header */
+  .page-header {
+    margin-bottom: 40px;
+  }
+
+  .eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  h1 {
+    font-size: clamp(22px, 5vw, 30px);
+    font-weight: 700;
+    margin: 0 0 10px;
+    line-height: 1.2;
+    text-wrap: balance;
+  }
+
+  .subtitle {
+    color: var(--fg-muted);
+    font-size: 15px;
+    margin: 0 0 20px;
+  }
+
+  /* Folder summary card */
+  .folder-summary {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .folder-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+  }
+
+  .folder-icon {
+    font-size: 16px;
+    line-height: 1;
+  }
+
+  .folder-label {
+    color: var(--fg-muted);
+  }
+
+  /* Section headers */
+  .section {
+    margin-top: 40px;
+  }
+
+  .section-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--fg-muted);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* Steps */
+  .step {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 12px;
+    position: relative;
+  }
+
+  .step-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 12px;
+  }
+
+  .step-num {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--accent-light);
+    border: 1.5px solid var(--accent-border);
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-variant-numeric: tabular-nums;
+    margin-top: 1px;
+  }
+
+  .step-title {
+    font-size: 15px;
+    font-weight: 600;
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  .step-desc {
+    color: var(--fg-muted);
+    font-size: 13.5px;
+    margin: 0;
+    padding-left: 42px;
+    line-height: 1.55;
+  }
+
+  .step-desc strong {
+    color: var(--fg);
+    font-weight: 600;
+  }
+
+  /* Code blocks */
+  .cmd-block {
+    margin: 12px 0 0 42px;
+    background: var(--code-bg);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .cmd-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #64748b;
+    padding: 8px 14px 4px;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
+  .cmd-lines {
+    padding: 6px 14px 12px;
+  }
+
+  .cmd {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    padding: 3px 0;
+  }
+
+  .prompt {
+    color: #475569;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    user-select: none;
+    flex-shrink: 0;
+  }
+
+  .cmd-text {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--code-fg);
+    word-break: break-all;
+  }
+
+  .cmd-text .hl {
+    color: var(--code-accent);
+  }
+
+  .copy-btn {
+    display: block;
+    width: calc(100% - 28px);
+    margin: 0 14px 8px;
+    background: #2a3040;
+    border: 1px solid #3a4055;
+    border-radius: 6px;
+    color: #94a3b8;
+    font-size: 12px;
+    font-family: 'IBM Plex Mono', monospace;
+    padding: 7px 12px;
+    cursor: pointer;
+    text-align: left;
+    transition: background 0.15s, color 0.15s;
+  }
+
+  .copy-btn:hover {
+    background: #333d55;
+    color: #e2e8f0;
+  }
+
+  .copy-btn.copied {
+    background: #064e3b;
+    color: #6ee7b7;
+  }
+
+  /* Tips */
+  .tip {
+    margin: 10px 0 0 42px;
+    background: var(--tip-bg);
+    border-left: 3px solid var(--tip-border);
+    border-radius: 0 6px 6px 0;
+    padding: 10px 14px;
+    font-size: 13px;
+    color: var(--fg-muted);
+  }
+
+  .tip strong {
+    color: var(--fg);
+  }
+
+  .warn {
+    margin: 10px 0 0 42px;
+    background: var(--warn-bg);
+    border-left: 3px solid var(--warn-border);
+    border-radius: 0 6px 6px 0;
+    padding: 10px 14px;
+    font-size: 13px;
+    color: var(--fg-muted);
+  }
+
+  /* Option picker */
+  .option-card {
+    background: var(--accent-light);
+    border: 1.5px solid var(--accent-border);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-top: 12px;
+  }
+
+  .option-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+
+  .option-desc {
+    font-size: 13px;
+    color: var(--fg-muted);
+  }
+
+  /* Success banner */
+  .success {
+    background: #f0fdf4;
+    border: 1.5px solid #86efac;
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-top: 12px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .success {
+      background: #052e16;
+      border-color: #166534;
+    }
+  }
+  :root[data-theme="dark"] .success {
+    background: #052e16;
+    border-color: #166534;
+  }
+
+  .success-icon {
+    font-size: 22px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .success-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--step-done);
+    margin-bottom: 4px;
+  }
+
+  .success-desc {
+    font-size: 13px;
+    color: var(--fg-muted);
+  }
+
+  .success-desc a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  /* Inline code */
+  code {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.88em;
+    background: var(--accent-light);
+    color: var(--accent);
+    padding: 1px 5px;
+    border-radius: 4px;
+  }
+
+  /* Ask Claude bar */
+  .ask-bar {
+    margin-top: 32px;
+    background: var(--surface);
+    border: 1px dashed var(--border);
+    border-radius: 12px;
+    padding: 18px 22px;
+    text-align: center;
+    font-size: 14px;
+    color: var(--fg-muted);
+  }
+
+  .ask-bar strong {
+    color: var(--fg);
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  @media (max-width: 480px) {
+    .step { padding: 16px; }
+    .step-desc, .cmd-block, .tip, .warn { padding-left: 0; margin-left: 0; }
+    .cmd-block { margin-left: 0; }
+    .tip { margin-left: 0; }
+    .warn { margin-left: 0; }
+  }
+</style>
+
+<div class="container">
+  <div class="page-header">
+    <div class="eyebrow">Step-by-step guide</div>
+    <h1>Upload "35 Budhas" to GitHub</h1>
+    <p class="subtitle">Your folder has a ready-to-publish website inside it. This guide takes you from zero to GitHub in 10 minutes.</p>
+
+    <div class="folder-summary">
+      <div class="folder-item">
+        <span class="folder-icon">🌐</span>
+        <span><strong>website/</strong> <span class="folder-label">— the website (index.html + images)</span></span>
+      </div>
+      <div class="folder-item">
+        <span class="folder-icon">🖼️</span>
+        <span><strong>Photos/</strong> <span class="folder-label">— 35 high-res source photos</span></span>
+      </div>
+      <div class="folder-item">
+        <span class="folder-icon">📄</span>
+        <span><strong>Research Notes.txt</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PART 1: GitHub.com -->
+  <div class="section">
+    <div class="section-label">Part 1 — Create the repository on GitHub.com</div>
+
+    <div class="step">
+      <div class="step-header">
+        <div class="step-num">1</div>
+        <h3 class="step-title">Go to GitHub and sign in (or create an account)</h3>
+      </div>
+      <p class="step-desc">
+        Open your browser and go to <strong>github.com</strong>. If you don't have an account yet, click <strong>Sign up</strong> and create a free one. It only takes a few minutes.
+      </p>
+      <div class="tip">💡 A free GitHub account is all you need. No credit card required.</div>
+    </div>
+
+    <div class="step">
+      <div class="step-header">
+        <div class="step-num">2</div>
+        <h3 class="step-title">Create a new repository</h3>
+      </div>
+      <p class="step-desc">
+        Once signed in, click the <strong>+</strong> button in the top-right corner → <strong>New repository</strong>. Then fill in:
+        <br><br>
+        • <strong>Repository name:</strong> <code>35-buddhas</code><br>
+        • <strong>Description:</strong> <em>optional — e.g. "Website about the 35 Buddhas"</em><br>
+        • <strong>Visibility:</strong> Public (so the website can be seen by others) or Private (just for you)<br>
+        • <strong>❌ Do NOT check</strong> "Add a README file" — leave all checkboxes empty
+        <br><br>
+        Click <strong>Create repository</strong>.
+      </p>
+      <div class="warn">⚠️ Leave "Add a README", "Add .gitignore", and "Choose a license" all unchecked. If you add them, the push will fail.</div>
+    </div>
+
+    <div class="step">
+      <div class="step-header">
+        <div class="step-num">3</div>
+        <h3 class="step-title">Copy your repository URL</h3>
+      </div>
+      <p class="step-desc">
+        After creating the repo, GitHub shows a page with setup instructions. Look for the URL in the <strong>"…or push an existing repository"</strong> section. It looks like:
+      </p>
+      <div class="cmd-block">
+        <div class="cmd-label">Your URL will look like this</div>
+        <div class="cmd-lines">
+          <div class="cmd">
+            <span class="cmd-text"><span class="hl">https://github.com/YOUR-USERNAME/35-buddhas.git</span></span>
+          </div>
+        </div>
+      </div>
+      <div class="tip">💡 Copy this URL — you'll need it in Step 6.</div>
+    </div>
+  </div>
+
+  <!-- PART 2: Terminal commands -->
+  <div class="section">
+    <div class="section-label">Part 2 — Open Command Prompt and run git commands</div>
+
+    <div class="step">
+      <div class="step-header">
+        <div class="step-num">4</div>
+        <h3 class="step-title">Open Command Prompt in your folder</h3>
+      </div>
+      <p class="step-desc">
+        Open <strong>File Explorer</strong> and navigate to your <code>35 Budhas</code> folder. Then click the address bar at the top, type <code>cmd</code>, and press <strong>Enter</strong>. A black Command Prompt window will open already inside that folder.
+      </p>
+      <div class="tip">💡 Alternatively: press <strong>Windows key + R</strong>, type <code>cmd</code>, press Enter, then paste the command below to navigate there.</div>
+      <div class="cmd-block">
+        <div class="cmd-label">Alternative — navigate manually</div>
+        <div class="cmd-lines">
+          <div class="cmd">
+            <span class="prompt">C:\&gt;</span>
+            <span class="cmd-text">cd "C:\35 Budhas"</span>
+          </div>
+        </div>
+        <button class="copy-btn" onclick="copyCmd(this, 'cd \"C:\\35 Budhas\"')">📋 Copy command</button>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-header">
+        <div class="step-num">5</div>
+        <h3 class="step-title">Initialize git and add your files</h3>
+      </div>
+      <p class="step-desc">
+        Run these commands one by one. After each one, press <strong>Enter</strong> and wait for it to finish before typing the next.
+      </p>
+      <div class="cmd-block">
+        <div class="cmd-label">Command 1 of 3 — Initialize git</div>
+        <div class="cmd-lines">
+          <div class="cmd">
+            <span class="prompt">&gt;</span>
+            <span class="cmd-text">git init</span>
+          </div>
+        </div>
+        <button class="copy-btn" onclick="copyCmd(this, 'git init')">📋 Copy</button>
+      </div>
+      <div class="cmd-block">
+        <div class="cmd-label">Command 2 of 3 — Add all files</div>
+        <div class="cmd-lines">
+          <div class="cmd">
+            <span class="prompt">&gt;</span>
+            <span class="cmd-text">git add .</span>
+          </div>
+        </div>
+        <button class="copy-btn" onclick="copyCmd(this, 'git add .')">📋 Copy</button>
+      </div>
+      <div class="cmd-block">
+        <div class="cmd-label">Command 3 of 3 — Save a snapshot (commit)</div>
+        <div class="cmd-lines">
+          <div class="cmd">
+            <span class="prompt">&gt;</span>
+            <span class="cmd-text">git commit -m <span class="hl">"Initial commit: 35 Buddhas project"</span></span>
+          </div>
+        </div>
+        <button class="copy-btn" onclick="copyCmd(this, 'git commit -m \"Initial commit: 35 Buddhas project\"')">📋 Copy</button>
+      </div>
+      <div class="tip">💡 <strong>git add .</strong> means "add ALL files in this folder." The dot (.) means "everything here."</div>
+    </div>
+
+    <div class="step">
+      <div class="step-header">
+        <div class="step-num">6</div>
+        <h3 class="step-title">Connect your folder to GitHub</h3>
+      </div>
+      <p class="step-desc">
+        Replace <code>YOUR-USERNAME</code> in the command below with your actual GitHub username, then run it.
+      </p>
+      <div class="cmd-block">
+        <div class="cmd-label">Connect to GitHub — replace YOUR-USERNAME</div>
+        <div class="cmd-lines">
+          <div class="cmd">
+            <span class="prompt">&gt;</span>
+            <span class="cmd-text">git remote add origin https://github.com/<span class="hl">YOUR-USERNAME</span>/35-buddhas.git</span>
+          </div>
+        </div>
+        <button class="copy-btn" onclick="copyCmd(this, 'git remote add origin https://github.com/YOUR-USERNAME/35-buddhas.git')">📋 Copy (edit YOUR-USERNAME)</button>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-header">
+        <div class="step-num">7</div>
+        <h3 class="step-title">Push (upload) everything to GitHub</h3>
+      </div>
+      <p class="step-desc">
+        This is the final command. It uploads all your files to GitHub. It may take a minute because of the photos.
+      </p>
+      <div class="cmd-block">
+        <div class="cmd-label">Upload to GitHub</div>
+        <div class="cmd-lines">
+          <div class="cmd">
+            <span class="prompt">&gt;</span>
+            <span class="cmd-text">git push -u origin main</span>
+          </div>
+        </div>
+        <button class="copy-btn" onclick="copyCmd(this, 'git push -u origin main')">📋 Copy</button>
+      </div>
+      <div class="warn">⚠️ GitHub may ask for your <strong>username and password</strong>. For the password, use a <strong>Personal Access Token</strong> (not your account password). Generate one at: github.com → Settings → Developer Settings → Personal Access Tokens → Tokens (classic) → Generate new token. Give it "repo" permission.</div>
+    </div>
+
+    <div class="success">
+      <span class="success-icon">✅</span>
+      <div>
+        <div class="success-title">Done! Your files are on GitHub.</div>
+        <div class="success-desc">Go to <strong>github.com/YOUR-USERNAME/35-buddhas</strong> to see everything uploaded. You should see all three folders and files there.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BONUS -->
+  <div class="section">
+    <div class="section-label">Optional — Publish the website for free</div>
+
+    <div class="step">
+      <div class="step-header">
+        <div class="step-num">★</div>
+        <h3 class="step-title">Turn on GitHub Pages (free website hosting)</h3>
+      </div>
+      <p class="step-desc">
+        GitHub can host your <code>website/</code> folder as a live website anyone can visit — for free.
+        <br><br>
+        1. On your repo page, click <strong>Settings</strong><br>
+        2. In the left sidebar, click <strong>Pages</strong><br>
+        3. Under "Source," select <strong>Deploy from a branch</strong><br>
+        4. Choose branch: <code>main</code>, folder: <code>/website</code><br>
+        5. Click <strong>Save</strong>
+        <br><br>
+        After a minute, your site will be live at:<br>
+        <code>https://YOUR-USERNAME.github.io/35-buddhas/</code>
+      </p>
+      <div class="tip">💡 It may take 1–2 minutes for the site to go live after saving.</div>
+    </div>
+  </div>
+
+  <div class="ask-bar">
+    <strong>Need help with any step?</strong>
+    Tell me which step you're on and paste any error message — I can run the commands for you directly if you share your GitHub username.
+  </div>
+</div>
+
+<script>
+  function copyCmd(btn, text) {
+    navigator.clipboard.writeText(text).then(() => {
+      const orig = btn.textContent;
+      btn.textContent = '✅ Copied!';
+      btn.classList.add('copied');
+      setTimeout(() => {
+        btn.textContent = orig;
+        btn.classList.remove('copied');
+      }, 2000);
+    }).catch(() => {
+      // fallback: select
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+    });
+  }
+</script>

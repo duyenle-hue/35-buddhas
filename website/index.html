@@ -1,0 +1,725 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font-size:14px}img{max-width:100%}[hidden]{display:none!important}</style>
+<title><span data-i="h1">Thirty-Five Buddhas</span></title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Spectral:ital,wght@0,400;0,500;1,400&family=Alegreya+Sans:wght@400;500&family=Alegreya+Sans+SC:wght@500&display=swap">
+<style>
+/* Layout: a thangka-inspired compass. Shakyamuni at the center, 34 Buddhas on eight spokes, with "above" and "below" as bands over and under the compass. */
+:root{
+  --paper:#f5f6f9; --surface:#ffffff; --ink:#1a1f3b; --muted:#565d7e; --line:#d6daea;
+  --gold:#a8730b; --gold-soft:#ecd9a8; --lapis:#2a4598; --cinnabar:#b5352a;
+  --good:#2f7d4f; --good-soft:#cfe8d8; --bad:#b5352a;
+  --display:"Cormorant Garamond","Iowan Old Style",Georgia,serif;
+  --body:"Spectral",Georgia,"Times New Roman",serif;
+  --ui:"Alegreya Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --caps:"Alegreya Sans SC","Alegreya Sans",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#0e1224; --surface:#161b33; --ink:#ecebe3; --muted:#a4a9c6; --line:#2a3154;
+  --gold:#e2b24c; --gold-soft:#4a3d1c; --lapis:#9db0ff; --cinnabar:#ef7a6c; --good:#6fcf97; --good-soft:#1e4030; --bad:#ef7a6c; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#0e1224; --surface:#161b33; --ink:#ecebe3; --muted:#a4a9c6; --line:#2a3154;
+  --gold:#e2b24c; --gold-soft:#4a3d1c; --lapis:#9db0ff; --cinnabar:#ef7a6c; --good:#6fcf97; --good-soft:#1e4030; --bad:#ef7a6c; color-scheme:dark}
+
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6}
+.wrap{max-width:1080px;margin:0 auto;padding-block:40px 64px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.1;text-wrap:balance;margin:0}
+.eyebrow{font-family:var(--caps);letter-spacing:.08em;font-size:14px;color:var(--gold);margin:0}
+a{color:var(--lapis)}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+
+/* Header */
+header.intro{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:40px;align-items:end;padding-bottom:32px;border-bottom:1px solid var(--line)}
+header.intro h1{font-size:clamp(44px,7vw,80px);margin-top:8px}
+header.intro .lead{font-size:19px;max-width:60ch;margin:0}
+header.intro p{margin:0 0 12px}
+.small{font-family:var(--ui);font-size:15px;color:var(--muted)}
+
+/* Map */
+.map-section{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:40px;padding-top:36px;align-items:start}
+.map-col{display:flex;flex-direction:column;align-items:center;gap:14px;min-width:0}
+.band{display:flex;align-items:center;gap:14px;justify-content:center;width:100%}
+.band .bandlabel{font-family:var(--caps);letter-spacing:.06em;font-size:14px;color:var(--muted);text-align:right;min-width:92px}
+.band .bandlabel b{display:block;font-family:var(--display);font-size:20px;color:var(--ink);font-weight:600;letter-spacing:0}
+.band .row{display:flex;gap:12px}
+.band .tb{position:relative;width:clamp(44px,8.4vw,72px)}
+.compass{position:relative;width:min(100%,640px);aspect-ratio:1/1;max-width:100%}
+.compass svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.compass svg .ring{fill:none;stroke:var(--line);stroke-width:1;vector-effect:non-scaling-stroke}
+.compass svg .spoke{stroke:var(--line);stroke-width:1;vector-effect:non-scaling-stroke}
+.compass svg text{fill:var(--muted);font-family:var(--caps);letter-spacing:.08em}
+.compass svg .halo{fill:var(--gold-soft);opacity:.55}
+.tb{border:0;padding:0;background:none;cursor:pointer;border-radius:50%;aspect-ratio:1/1}
+.compass .tb{position:absolute;width:7.6%;transform:translate(-50%,-50%)}
+.tb img{display:block;width:100%;height:100%;border-radius:50%;object-fit:cover;border:2px solid var(--gold);box-shadow:0 1px 3px rgba(10,15,40,.18);transition:transform .2s ease, opacity .2s ease, filter .2s ease;background:#fff}
+.tb .num{position:absolute;right:-6px;bottom:-6px;min-width:20px;height:20px;padding:0 4px;border-radius:10px;background:var(--surface);color:var(--ink);border:1px solid var(--line);font-family:var(--ui);font-size:12px;line-height:18px;text-align:center;font-variant-numeric:tabular-nums}
+.tb:hover img,.tb:focus-visible img{transform:scale(1.08)}
+.compass .tb.center{width:15%}
+.compass .tb.center img{border-width:3px}
+.dim .tb img{opacity:.22;filter:grayscale(.7)}
+.dim .tb.hit img{opacity:1;filter:none;transform:scale(1.12);box-shadow:0 0 0 4px var(--gold-soft)}
+@media (max-width:700px){.compass .tb .num{display:none}}
+@media (max-width:520px){.tb .num{display:none}.band .bandlabel{min-width:70px}.band .bandlabel b{font-size:17px}}
+
+/* Side panel */
+aside.guide{display:flex;flex-direction:column;gap:24px;min-width:0}
+aside.guide h2{font-size:28px}
+aside.guide p{margin:0}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-family:var(--ui);font-size:15px;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:5px 13px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.hint{font-family:var(--ui);font-size:15px;color:var(--muted);min-height:3em}
+
+/* Practice explainer */
+.powers{margin-top:56px;padding-top:32px;border-top:1px solid var(--line)}
+.powers h2{font-size:36px;margin-bottom:6px}
+.powers .grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px;margin-top:22px}
+.powers h3{font-size:24px;margin-bottom:4px;color:var(--lapis)}
+.powers p{margin:0;font-size:16px}
+@media (max-width:820px){.powers .grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* List */
+.all{margin-top:56px;padding-top:32px;border-top:1px solid var(--line)}
+.all h2{font-size:36px}
+.list{list-style:none;padding:0;margin:22px 0 0;display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:4px 24px}
+.list button{display:grid;grid-template-columns:52px minmax(0,1fr);gap:12px;align-items:center;width:100%;text-align:left;background:none;border:0;border-bottom:1px solid var(--line);padding:10px 0;cursor:pointer;color:var(--ink);font:inherit}
+.list img{width:52px;height:52px;border-radius:50%;border:1.5px solid var(--gold);object-fit:cover;background:#fff}
+.list .en{font-family:var(--display);font-size:21px;font-weight:600;line-height:1.15;display:block}
+.list .vi{font-family:var(--ui);font-size:14px;color:var(--muted);display:block}
+.list .n{font-variant-numeric:tabular-nums;color:var(--gold);font-family:var(--ui);font-size:14px;margin-right:6px}
+
+footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--line)}
+
+/* Dialog */
+dialog{border:0;padding:0;background:var(--surface);color:var(--ink);border-radius:14px;width:min(920px,calc(100% - 32px));max-height:calc(100% - 32px);box-shadow:0 20px 60px rgba(5,8,25,.35)}
+dialog::backdrop{background:rgba(8,11,30,.55)}
+.dlg{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);min-height:0}
+.dlg .art{background:#fff;display:flex;align-items:center;justify-content:center;padding:16px;border-radius:14px 0 0 14px}
+.dlg .art img{max-height:72vh;width:auto;object-fit:contain}
+.dlg .info{padding:28px 30px 22px;display:flex;flex-direction:column;gap:16px;min-width:0;overflow:auto;max-height:calc(100vh - 32px)}
+.dlg h2{font-size:clamp(32px,4vw,44px)}
+.dlg .vi{font-family:var(--display);font-size:22px;font-style:italic;color:var(--muted);margin:2px 0 0}
+dl.facts{display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px 16px;margin:0;font-size:16px}
+dl.facts dt{font-family:var(--caps);letter-spacing:.06em;font-size:13px;color:var(--muted);padding-top:3px}
+dl.facts dd{margin:0}
+.purify{border-left:3px solid var(--cinnabar);padding:4px 0 4px 14px;font-size:17px}
+.purify .small{display:block;margin-top:4px}
+.nav{display:flex;gap:10px;align-items:center;margin-top:auto;padding-top:8px;font-family:var(--ui)}
+.nav button{font:inherit;font-size:15px;border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:8px;padding:7px 14px;cursor:pointer}
+.nav .pos{flex:1;text-align:center;color:var(--muted);font-variant-numeric:tabular-nums;font-size:14px}
+.close{position:absolute;top:10px;right:12px;width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--ink);font-size:20px;line-height:1;cursor:pointer}
+@media (max-width:760px){
+  header.intro,.map-section{grid-template-columns:minmax(0,1fr)}
+  .dlg{grid-template-columns:minmax(0,1fr)}
+  .dlg .art{border-radius:14px 14px 0 0}
+  .dlg .art img{max-height:42vh}
+  .dlg .info{max-height:none;padding:20px}
+  dialog{overflow:auto}
+}
+[hidden]{display:none!important}
+.langbar{display:flex;justify-content:flex-end;margin:-16px 0 12px}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:3px;background:var(--surface)}
+.seg button{font-family:var(--ui);font-size:14px;border:0;background:none;color:var(--muted);padding:5px 14px;border-radius:999px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+/* Ways in */
+.ways{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;padding-top:28px}
+.way{display:flex;flex-direction:column;gap:4px;text-align:left;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:12px;padding:16px 18px;cursor:pointer;font:inherit;transition:border-color .2s, transform .2s}
+.way:hover{border-color:var(--gold);transform:translateY(-2px)}
+.way .k{font-family:var(--caps);letter-spacing:.06em;font-size:13px;color:var(--gold)}
+.way .t{font-family:var(--display);font-size:25px;font-weight:600;line-height:1.1}
+.way .d{font-family:var(--ui);font-size:15px;color:var(--muted);line-height:1.4}
+.way.primary{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.way.primary .d{color:var(--paper);opacity:.8}
+.way.primary .k{color:var(--gold-soft)}
+@media (max-width:820px){.ways{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* Tour */
+.tour .tb.now img{opacity:1;filter:none;transform:scale(1.35);box-shadow:0 0 0 4px var(--cinnabar);z-index:2}
+.tour .tb.now{z-index:3}
+.tour .tb.done img{opacity:1;filter:none}
+.coach{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(16px + env(safe-area-inset-bottom,0px));width:min(560px,calc(100% - 32px));background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:14px;box-shadow:0 16px 48px rgba(5,8,25,.28);padding:18px 20px 14px;z-index:20;display:flex;flex-direction:column;gap:10px}
+.coach h3{font-size:26px}
+.coach p{margin:0;font-size:16px;line-height:1.5}
+.coach .now-line{font-family:var(--ui);font-size:15px;color:var(--muted);min-height:1.4em}
+.coach .now-line b{color:var(--ink);font-weight:500}
+.coach .row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.coach .dots{flex:1;display:flex;gap:6px}
+.coach .dots i{width:8px;height:8px;border-radius:50%;background:var(--line)}
+.coach .dots i.on{background:var(--gold)}
+.btn{font-family:var(--ui);font-size:15px;border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:8px;padding:8px 15px;cursor:pointer}
+.btn.solid{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.btn.big{font-size:18px;padding:12px 28px;border-radius:999px}
+.btn:disabled{opacity:.4;cursor:default}
+.coach .x{position:absolute;top:8px;right:10px;border:0;background:none;color:var(--muted);font-size:22px;cursor:pointer;width:32px;height:32px}
+
+/* Full-screen modes */
+dialog.full{width:100%;height:100%;max-width:100%;max-height:100%;border-radius:0;margin:0;background:var(--paper)}
+.full .shell{min-height:100%;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;gap:18px;padding-block:calc(20px + env(safe-area-inset-top,0px)) calc(24px + env(safe-area-inset-bottom,0px));padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.full .top{width:100%;max-width:880px;display:flex;align-items:center;gap:12px}
+.full .top .title{flex:1;font-family:var(--caps);letter-spacing:.06em;font-size:14px;color:var(--gold)}
+.full .center{width:100%;max-width:640px;display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center;flex:1;justify-content:center}
+.full h2{font-size:clamp(34px,5vw,52px)}
+.full .lead{font-size:18px;max-width:52ch;margin:0}
+.steps{list-style:none;padding:0;margin:4px 0;display:grid;gap:10px;text-align:left;max-width:460px}
+.steps li{display:grid;grid-template-columns:30px minmax(0,1fr);gap:10px;align-items:start;font-size:17px}
+.steps li span{width:26px;height:26px;border-radius:50%;background:var(--gold-soft);color:var(--ink);font-family:var(--ui);font-size:14px;display:grid;place-items:center}
+
+/* Practice */
+.pr-art{position:relative;width:min(360px,72vw);aspect-ratio:720/886;max-width:100%}
+.pr-art img{width:100%;height:100%;object-fit:contain;background:#fff;border-radius:12px;transition:transform .45s ease, opacity .45s ease}
+.pr-art.bowing img{transform:translateY(18px) scale(.96);opacity:0}
+.ring{position:relative;width:64px;height:64px}
+.ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.ring circle{fill:none;stroke-width:5}
+.ring .bg{stroke:var(--line)} .ring .fg{stroke:var(--gold);stroke-linecap:round;transition:stroke-dashoffset .5s ease}
+.ring span{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--ui);font-size:14px;font-variant-numeric:tabular-nums}
+.pr-vi{font-family:var(--display);font-size:clamp(26px,4vw,36px);font-weight:600;line-height:1.15;margin:0}
+.pr-en{font-family:var(--ui);font-size:16px;color:var(--muted);margin:0}
+.pr-pur{font-size:15px;color:var(--muted);margin:0;max-width:44ch}
+
+/* Game */
+.g-q{font-family:var(--display);font-size:clamp(26px,4vw,34px);font-weight:600;line-height:1.15;margin:0}
+.g-art{width:min(300px,64vw);aspect-ratio:720/886;max-width:100%}
+.g-art img{width:100%;height:100%;object-fit:contain;background:#fff;border-radius:12px}
+.g-opts{display:grid;gap:10px;width:100%;max-width:460px}
+.g-opts.pics{grid-template-columns:repeat(3,minmax(0,1fr));max-width:560px}
+.opt{font:inherit;text-align:left;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);border-radius:10px;padding:12px 16px;cursor:pointer;display:flex;flex-direction:column;gap:2px}
+.opt .en{font-family:var(--display);font-size:22px;font-weight:600;line-height:1.15}
+.opt .vi{font-family:var(--ui);font-size:14px;color:var(--muted)}
+.opt:hover:not(:disabled){border-color:var(--gold)}
+.opt:disabled{cursor:default}
+.opt.pic{padding:6px;align-items:center}
+.opt.pic img{width:100%;aspect-ratio:720/886;object-fit:contain;background:#fff;border-radius:6px}
+.opt.right{border-color:var(--good);box-shadow:0 0 0 3px var(--good-soft)}
+.opt.wrong{border-color:var(--bad);opacity:.75}
+.g-fb{min-height:3.2em;font-size:16px;max-width:52ch;margin:0}
+.g-fb b{font-family:var(--ui);font-weight:500}
+.g-fb .ok{color:var(--good)} .g-fb .no{color:var(--bad)}
+.g-score{font-family:var(--display);font-size:72px;font-weight:600;line-height:1}
+.review{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.review button{border:0;background:none;padding:0;cursor:pointer;width:64px;display:flex;flex-direction:column;align-items:center;gap:4px;font-family:var(--ui);font-size:12px;color:var(--muted)}
+.review img{width:56px;height:56px;border-radius:50%;border:1.5px solid var(--gold);object-fit:cover}
+@media (max-width:520px){.g-opts.pics{gap:6px}.opt .en{font-size:19px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="langbar"><div class="seg" role="group" aria-label="Language"><button id="lEn" lang="en">English</button><button id="lVi" lang="vi">Tiếng Việt</button></div></div>
+  <header class="intro">
+    <div>
+      <p class="eyebrow"><span data-i="eyebrowTop">The Confession Buddhas</span></p>
+      <h1><span data-i="h1">Thirty-Five Buddhas</span></h1>
+    </div>
+    <div>
+      <p class="lead"><span data-i="lead">For well over a thousand years, Buddhists in Vietnam, China and Tibet have recited these 35 names to let go of harm they have done.</span></p>
+      <p class="small"><span data-i="leadSmall">You say each name, bow, and resolve to do better. The list comes from a Mahāyāna sutra, the chapter of the <i>Ratnakūṭa</i> in which the Buddha answers his disciple Upāli.</span></p>
+    </div>
+  </header>
+
+  <nav class="ways" aria-label="Ways to explore">
+    <button class="way primary" id="goTour"><span class="k"><span data-i="wTourK">New here? Start here</span></span><span class="t"><span data-i="wTourT">Take the tour</span></span><span class="d"><span data-i="wTourD">One minute, five steps. The map lights up as you go.</span></span></button>
+    <button class="way" id="goMap"><span class="k"><span data-i="wMapK">Browse</span></span><span class="t"><span data-i="wMapT">Explore the map</span></span><span class="d"><span data-i="wMapD">Tap any Buddha to see the painting and its meaning.</span></span></button>
+    <button class="way" id="goPractice"><span class="k"><span data-i="wPrK">Try it · about 10 min</span></span><span class="t"><span data-i="wPrT">Practice</span></span><span class="d"><span data-i="wPrD">Bow to all 35, one at a time, the way it's done in temples.</span></span></button>
+    <button class="way" id="goPlay"><span class="k"><span data-i="wPlK">Test yourself · 8 questions</span></span><span class="t"><span data-i="wPlT"><span data-i="gameTitle">Matching game</span></span></span><span class="d"><span data-i="wPlD">Match the paintings to their names, with hints.</span></span></button>
+  </nav>
+
+  <section class="map-section" aria-label="Map of the 35 Buddhas">
+    <div class="map-col" id="map">
+      <div class="band" id="above"><span class="bandlabel"><b><span data-i="above">Above</span></b><span data-i="zenith">zenith</span></span><div class="row"></div></div>
+      <div class="compass" id="compass">
+        <svg viewBox="0 0 100 100" aria-hidden="true" id="compassSvg"></svg>
+      </div>
+      <div class="band" id="below"><span class="bandlabel"><b><span data-i="below">Below</span></b><span data-i="nadir">nadir</span></span><div class="row"></div></div>
+    </div>
+
+    <aside class="guide">
+      <div>
+        <h2><span data-i="howH">How to read the map</span></h2>
+        <p style="margin-top:8px"><span data-i="howP">Shakyamuni, the historical Buddha, sits at the center. The other 34 surround him in all ten directions: the eight points of the compass, plus above and below. The arrangement says that awakening is present everywhere.</span></p>
+      </div>
+      <p class="small"><span data-i="howS">Numbers show the order of recitation. It circles from above, to east, round the compass, then below, three times over. Select any Buddha to see the painting, and use Next to follow the order.</span></p>
+      <div>
+        <h2 style="font-size:24px"><span data-i="habH">Start from a habit</span></h2>
+        <p class="small" style="margin:6px 0 12px"><span data-i="habS">Each Buddha is traditionally linked to one kind of harm. Pick something you'd like to let go of.</span></p>
+        <div class="chips" id="chips"></div>
+        <p class="hint" id="hint" aria-live="polite"></p>
+      </div>
+    </aside>
+  </section>
+
+  <section class="powers">
+    <p class="eyebrow"><span data-i="powE">How the practice works</span></p>
+    <h2><span data-i="powH">Four steps of letting go</span></h2>
+    <p class="small"><span data-i="powS">Tibetan teachers explain the practice through four "powers". Reciting the names is the remedy.</span></p>
+    <div class="grid">
+      <div><h3><span data-i="p1h">Regret</span></h3><p><span data-i="p1">Honestly see a harm you caused, the way you'd regret swallowing something bad for you.</span></p></div>
+      <div><h3><span data-i="p2h">Refuge</span></h3><p><span data-i="p2">Turn toward the Buddhas as a steady reference point, instead of toward guilt or excuses.</span></p></div>
+      <div><h3><span data-i="p3h">Remedy</span></h3><p><span data-i="p3">Do something good to counter it. Here that means saying each name and bowing.</span></p></div>
+      <div><h3><span data-i="p4h">Resolve</span></h3><p><span data-i="p4">Decide not to repeat the harm, for a day or for good, in a promise you can keep.</span></p></div>
+    </div>
+  </section>
+
+  <section class="all">
+    <p class="eyebrow"><span data-i="allE">In order of recitation</span></p>
+    <h2><span data-i="allH">All thirty-five</span></h2>
+    <ol class="list" id="list"></ol>
+  </section>
+
+  <footer class="small">
+    <p><span data-i="foot">Paintings: Vietnamese card set of the 35 Buddhas in Tibetan style; publisher to be credited. English names follow the Sanskrit; realm names are literal translations of the Vietnamese. Texts: the <i>Upāli-paripṛcchā</i> (Taishō 310.24, 325) and the Vietnamese <i>Hồng Danh Sám Hối</i> liturgy.</span></p>
+  </footer>
+</div>
+
+<dialog id="dlg" aria-labelledby="dName">
+  <button class="close" id="dClose" aria-label="Close">×</button>
+  <div class="dlg">
+    <div class="art"><img id="dImg" alt=""></div>
+    <div class="info">
+      <div>
+        <p class="eyebrow" id="dEyebrow"></p>
+        <h2 id="dName"></h2>
+        <p class="vi" id="dVi"></p>
+      </div>
+      <dl class="facts">
+        <dt><span data-i="fSkt">Sanskrit</span></dt><dd id="dSkt"></dd>
+        <dt><span data-i="fZh">Chinese</span></dt><dd id="dZh"></dd>
+        <dt><span data-i="fDir">Direction</span></dt><dd id="dDir"></dd>
+        <dt><span data-i="fRealm">Realm</span></dt><dd id="dRealm"></dd>
+        <dt><span data-i="fLook">In the painting</span></dt><dd id="dLook"></dd>
+      </dl>
+      <div class="purify"><span class="small" style="margin:0 0 2px"><span data-i="purL">Traditionally said to purify</span></span><span id="dPur"></span></div>
+      <div class="nav">
+        <button id="dPrev"><span data-i="prev">← Previous</span></button><span class="pos" id="dPos"></span><button id="dNext"><span data-i="next">Next →</span></button>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<div class="coach" id="coach" hidden role="dialog" aria-live="polite" aria-labelledby="cTitle">
+  <button class="x" id="cClose" aria-label="End tour">×</button>
+  <p class="eyebrow" id="cStep"></p>
+  <h3 id="cTitle"></h3>
+  <p id="cText"></p>
+  <p class="now-line" id="cNow"></p>
+  <div class="row" id="cExtra"></div>
+  <div class="row"><span class="dots" id="cDots"></span><button class="btn" id="cBack"><span data-i="back">Back</span></button><button class="btn solid" id="cNext">Next</button></div>
+</div>
+
+<dialog class="full" id="prac" aria-label="Practice">
+  <div class="shell">
+    <div class="top"><span class="title"><span data-i="prTitle">Practice · bowing to the 35</span></span><button class="btn" id="pExit"><span data-i="close">Close</span></button></div>
+    <div class="center" id="pIntro">
+      <h2><span data-i="prH">Bow to the 35 Buddhas</span></h2>
+      <p class="lead"><span data-i="prLead">This is the practice as people do it in temples and at home. You don't need to be Buddhist to try it.</span></p>
+      <ol class="steps">
+        <li><span>1</span><span data-i="st1">Sit or stand comfortably and take three slow breaths.</span></li>
+        <li><span>2</span><span data-i="st2">Bring to mind one thing you said or did that you regret.</span></li>
+        <li><span>3</span><span data-i="st3">For each Buddha, read the name aloud or silently, then bow or lower your head. Tap <b><span data-i="bow">Bow</span></b> to move on.</span></li>
+        <li><span>4</span><span data-i="st4">At the end, resolve to do better and wish others well.</span></li>
+      </ol>
+      <button class="btn solid big" id="pStart"><span data-i="begin">Begin</span></button>
+    </div>
+    <div class="center" id="pRun" hidden>
+      <div class="ring" aria-hidden="true"><svg viewBox="0 0 64 64"><circle class="bg" cx="32" cy="32" r="28"/><circle class="fg" id="pRing" cx="32" cy="32" r="28" stroke-dasharray="175.9" stroke-dashoffset="175.9"/></svg><span id="pCount"></span></div>
+      <div class="pr-art" id="pArtBox"><img id="pArt" alt=""></div>
+      <p class="pr-vi" id="pVi"></p>
+      <p class="pr-en" id="pEn"></p>
+      <p class="pr-pur" id="pPur"></p>
+      <div class="row" style="display:flex;gap:10px;align-items:center"><button class="btn" id="pPrev"><span data-i="back">Back</span></button><button class="btn solid big" id="pBow"><span data-i="bow">Bow</span></button></div>
+      <p class="small" style="margin:0"><span data-i="tip">Tip: press the space bar to bow.</span></p>
+    </div>
+    <div class="center" id="pDone" hidden>
+      <p class="eyebrow">35 of 35</p>
+      <h2><span data-i="doneH">You've bowed to all thirty-five.</span></h2>
+      <p class="lead"><span data-i="doneLead">The practice traditionally ends by dedicating its goodness to everyone. Take a breath, picture someone you care about, and someone you find difficult, and wish them both well.</span></p>
+      <p class="small" id="pTime"></p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center"><button class="btn" id="pAgain"><span data-i="again">Start again</span></button><button class="btn solid" id="pBack"><span data-i="toMap">Back to the map</span></button></div>
+    </div>
+  </div>
+</dialog>
+
+<dialog class="full" id="game" aria-label="Matching game">
+  <div class="shell">
+    <div class="top"><span class="title" id="gTitle"><span data-i="wPlT"><span data-i="gameTitle">Matching game</span></span></span><button class="btn" id="gExit"><span data-i="close">Close</span></button></div>
+    <div class="center" id="gRun">
+      <p class="g-q" id="gQ"></p>
+      <div class="g-art" id="gArtBox"><img id="gArt" alt=""></div>
+      <div class="g-opts" id="gOpts"></div>
+      <button class="btn" id="gHint"><span data-i="hintBtn">Show a hint</span></button>
+      <p class="g-fb" id="gFb" aria-live="polite"></p>
+      <button class="btn solid big" id="gNext" hidden>Next</button>
+    </div>
+    <div class="center" id="gEnd" hidden>
+      <p class="eyebrow"><span data-i="scoreE">Your score</span></p>
+      <div class="g-score" id="gScore"></div>
+      <p class="lead" id="gMsg"></p>
+      <div id="gReviewWrap"><p class="small" style="margin:0 0 10px"><span data-i="reviewL">Take another look at these:</span></p><div class="review" id="gReview"></div></div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center"><button class="btn solid" id="gAgain"><span data-i="playAgain">Play again</span></button><button class="btn" id="gBack"><span data-i="toMap">Back to the map</span></button></div>
+    </div>
+  </div>
+</dialog>
+
+<script>
+// n, English name, Sanskrit, Vietnamese, Chinese, direction key, realm (vi), realm (en), look, purifies, habit
+const B=[
+[1,"Shakyamuni","Śākyamuni","Thích Ca Mâu Ni","釋迦牟尼","C","Sa Bà","the Sahā world, our world of endurance","Gold body; touches the earth and holds an alms bowl","negative karma gathered over 10,000 eons"],
+[2,"Indestructible Vajra","Vajrapramardī","Kim Cương Bất Hoại","金剛不壞","U","Hư Không Tạng","Treasury of Space","Deep blue; holds a vajra","negative karma gathered over 10,000 eons"],
+[3,"Jewel Light","Ratnārciṣ","Bảo Quang","寶光","E","Bảo Nghiêm","Jewel Adornment","White; holds a jewel and a sun disc","negative karma gathered over 25,000 eons"],
+[4,"King of the Nāgas","Nāgeśvararāja","Long Tôn Vương","龍尊王","SE","Long Biến Mãn","Filled with Dragons","Blue; a tree entwined with a nāga","negative karma gathered over 8 eons"],
+[5,"Army of Heroes","Vīrasena","Tinh Tấn Quân","精進軍","S","Dũng Biến Mãn","Filled with Courage","Yellow; raises a sword","harm done through speech","speech"],
+[6,"Delighted Hero","Vīranandī","Tinh Tấn Hỉ","精進喜","SW","Hoan Hỉ","Joy","Orange; a lotus and a jewel","harm done through the mind","mind"],
+[7,"Jewel Fire","Ratnāgni","Bảo Hỏa","寶火","W","Biến Tịnh Quang","Pervading Pure Light","Red; holds a flaming jewel","causing a split in the monastic community"],
+[8,"Jewel Moonlight","Ratnacandraprabha","Bảo Nguyệt Quang","寶月光","NW","Diệu Quang","Wondrous Light","White; a flaming jewel and a moon","negative karma gathered over 1 eon"],
+[9,"Meaningful to Behold","Amoghadarśī","Hiện Vô Ngu","現無愚","N","Cổ Thanh Âm","Sound of the Drum","Green; touches the earth","slandering great bodhisattvas"],
+[10,"Jewel Moon","Ratnacandra","Bảo Nguyệt","寶月","NE","Quang Nghiêm","Adorned with Light","White; a jewel and a moon disc","killing one's mother"],
+[11,"Stainless","Vimala","Vô Cấu","無垢","D","Trần Biến Mãn","Pervaded by Dust","Pale grey; holds a mirror","killing one's father"],
+[12,"Heroic Giving","Śūradatta","Dũng Thí","勇施","U","Quang Thắng","Victorious Light","White; a fruit-bearing tree","killing an arhat"],
+[13,"The Pure One","Brahmā","Thanh Tịnh","清淨","E","Vô Ngại","Unobstructed","Orange; a lotus and a jewel","wounding a Buddha with ill intent"],
+[14,"Giving of Purity","Brahmadatta","Thanh Tịnh Thí","清淨施","SE","Vô Ưu","Free of Sorrow","Yellow; a lotus and a jewel","negative karma gathered over 10,000 eons"],
+[15,"Water God","Varuṇa","Ta Lưu Na","娑留那","S","Vô Cấu","Stainless","Blue; holds a Dharma wheel","defiling a nun or an arhat"],
+[16,"God of the Water Gods","Varuṇadeva","Thủy Thiên","水天","SW","Viên Tịnh","Perfect Purity","White; hand raised in teaching","killing a bodhisattva"],
+[17,"Glorious Goodness","Bhadraśrī","Kiên Đức","堅德","W","Diệu Lạc","Wondrous Bliss","Red; a tree and a lotus","killing those still training on the path"],
+[18,"Glorious Sandalwood","Candanaśrī","Chiên Đàn Công Đức","栴檀功德","NW","Hương Biến Mãn","Filled with Fragrance","Red-orange; a sandalwood branch","stealing what belongs to the monastic community"],
+[19,"Infinite Splendour","Anantatejas","Vô Lượng Cúc Quang","無量掬光","N","Hữu Lực","Endowed with Power","Red; a radiant jewel in the lap","destroying a stupa"],
+[20,"Glorious Light","Prabhāśrī","Quang Đức","光德","NE","Diệu Nghĩa","Wondrous Meaning","White; holds a jewel crown","harm born of anger","anger"],
+[21,"Sorrowless Glory","Aśokaśrī","Vô Ưu Đức","無憂德","D","Vô Chướng","Unhindered","Pale blue; an aśoka tree","harm born of craving","craving"],
+[22,"Nārāyaṇa","Nārāyaṇa","Na La Diên","那羅延","U","Ly Trước","Free of Attachment","Blue; a stupa and a lotus","negative karma gathered over 10,000 eons"],
+[23,"Glorious Flower","Kusumaśrī","Công Đức Hoa","功德華","E","Trưởng Hoa","Flourishing Flowers","Yellow; a flowering tree","negative karma gathered over 100,000 eons"],
+[24,"Playful Powers of Pure Light","Brahmajyotir-vikrīḍitābhijña","Tịnh Quang Du Hí Thần Thông","清淨光遊戲神通","SE","Phạm Biến","Pervading Purity","White; a lotus and a white whisk","negative karma gathered over 1,000 eons"],
+[25,"Playful Powers of Lotus Light","Padmajyotir-vikrīḍitābhijña","Liên Hoa Quang Du Hí Thần Thông","蓮華光遊戲神通","S","Liên Hoa Trang Nghiêm","Lotus Adornment","Red; holds a lotus","negative karma gathered over 7 eons"],
+[26,"Glorious Wealth","Dhanaśrī","Tài Công Đức","財功德","SW","Bảo Trang Nghiêm","Jewel Adornment","Pink; a jewel in a bowl","harm born of old habits","habits"],
+[27,"Glorious Mindfulness","Smṛtiśrī","Đức Niệm","德念","W","Viên Tịnh","Perfect Purity","Yellow; a sword and a book","harm done through the body","body"],
+[28,"Glory of a Renowned Name","Suparikīrtita-nāmadheyaśrī","Thiện Danh Xưng Công Đức","善名稱功德","NW","Vô Tướng","Beyond Form","Green; a white jewel at the heart","failing to act as the Buddha taught"],
+[29,"King of the Victory Banner","Indraketudhvajarāja","Hồng Diệm Đế Tràng Vương","紅焰帝幢王","N","Tịnh Căn Lực","Power of Pure Faculties","Yellow; holds a red victory banner","harm born of jealousy","jealousy"],
+[30,"Glorious Subduer","Suvikrāntaśrī","Thiện Du Bộ Công Đức","善遊步功德","NE","Diệu Hỉ","Wondrous Joy","White; touches the earth","urging others to do harm"],
+[31,"Victorious in Battle","Yuddhajaya","Đấu Chiến Thắng","鬥戰勝","D","Ly Vọng","Free of Delusion","Dark blue-black; raises a sword","harm born of pride","pride"],
+[32,"Who Goes in Triumph","Vikrāntagāmī","Thiện Du Bộ","善遊步","E","Đức Thắng","Victorious Virtue","White; hand raised in protection","slander","speech"],
+[33,"Glory of All-Pervading Light","Samantāvabhāsavyūhaśrī","Chu Táp Trang Nghiêm Công Đức","周帀莊嚴功德","S","Quang Nghiêm","Adorned with Light","Yellow; a jewel and a flowering branch","taking pleasure in wrongdoing"],
+[34,"Who Strides on Jewel Lotuses","Ratnapadmavikrāmī","Bảo Hoa Du Bộ","寶華遊步","W","Thắng Đức","Supreme Virtue","Red; holds a lotus","abandoning the Dharma"],
+[35,"King of Mountains","Ratnapadma-supratiṣṭhita-śailendrarāja","Tu Di Sơn Vương","寶蓮華善住娑羅樹王","N","Diệu Bảo","Wondrous Jewel","Light blue; lifts a jewelled Mount Meru overhead","breaking one's vows"]
+];
+// Vietnamese: meaning of each name, what the painting shows, and the card's own caption
+const GLOSS_VI=["","Bậc Thánh của dòng họ Thích Ca","Kim cương không thể phá hoại","Ánh sáng quý báu","Vua tôn quý của loài rồng","Đạo quân của bậc anh hùng","Niềm vui của bậc anh hùng","Ngọn lửa báu","Ánh trăng báu","Ai được thấy cũng được lợi ích","Mặt trăng báu","Không chút cấu nhiễm","Bố thí dũng mãnh","Bậc thanh tịnh","Bố thí thanh tịnh","Thần nước (phiên âm Varuṇa)","Vua của các thần nước","Công đức tốt lành, kiên cố","Công đức thơm như gỗ chiên đàn","Hào quang vô lượng","Công đức ánh sáng","Công đức không sầu muộn","Na La Diên, biểu tượng của sức mạnh lớn","Hoa công đức","Thần thông du hí của ánh sáng thanh tịnh","Thần thông du hí của ánh sáng hoa sen","Công đức tài bảo","Công đức chánh niệm","Công đức của danh tiếng tốt lành","Vua của cờ chiến thắng","Công đức hàng phục","Chiến thắng trong trận chiến","Bước đi khải hoàn","Công đức trang nghiêm bằng ánh sáng khắp nơi","Bước đi trên hoa sen báu","Vua núi Tu Di an trụ trên sen báu"];
+const LOOK_VI=["","Thân vàng; tay chạm đất, cầm bát","Thân xanh đậm; cầm chày kim cương","Thân trắng; cầm ngọc báu và đĩa mặt trời","Thân xanh; cây có rồng quấn","Thân vàng; giơ kiếm","Thân cam; hoa sen và ngọc báu","Thân đỏ; cầm ngọc báu rực lửa","Thân trắng; ngọc rực lửa và mặt trăng","Thân xanh lục; tay chạm đất","Thân trắng; ngọc báu và đĩa mặt trăng","Thân xám nhạt; cầm gương","Thân trắng; cây trĩu quả","Thân cam; hoa sen và ngọc báu","Thân vàng; hoa sen và ngọc báu","Thân xanh; cầm bánh xe Pháp","Thân trắng; tay bắt ấn thuyết pháp","Thân đỏ; cây và hoa sen","Thân đỏ cam; cành chiên đàn","Thân đỏ; ngọc báu tỏa sáng trong lòng","Thân trắng; cầm mão báu","Thân xanh nhạt; cây vô ưu","Thân xanh; tháp và hoa sen","Thân vàng; cây trổ hoa","Thân trắng; hoa sen và phất trần trắng","Thân đỏ; cầm hoa sen","Thân hồng; ngọc báu trong bát","Thân vàng; kiếm và kinh sách","Thân xanh lục; ngọc trắng trước ngực","Thân vàng; cầm cờ chiến thắng màu đỏ","Thân trắng; tay chạm đất","Thân xanh đen; giơ kiếm","Thân trắng; tay bắt ấn vô úy","Thân vàng; ngọc báu và cành hoa","Thân đỏ; cầm hoa sen","Thân xanh nhạt; nâng núi Tu Di báu trên đầu"];
+const K10="tất cả các nghiệp bất thiện tích tập trên ";
+const CAP_VI=["",K10+"10.000 kiếp",K10+"10.000 kiếp",K10+"25.000 kiếp",K10+"8 kiếp","các ác nghiệp thuộc về khẩu","các ác nghiệp thuộc về ý","tội phá hòa hợp Tăng",K10+"1 kiếp","tội hủy báng đại lực Bồ Tát","tội giết mẹ","tội giết cha","tội giết A La Hán","tội với ác tâm làm thân Phật chảy máu",K10+"10.000 kiếp","tội làm ô nhiễm Tỳ Khưu Ni hoặc các bậc A La Hán","tội giết Bồ Tát","tội giết các bậc hữu học","tội trộm vật của Tăng","tội hủy phá tháp Phật","các ác nghiệp do sân hận gây nên","các ác nghiệp do tham ái gây nên",K10+"10.000 kiếp",K10+"100.000 kiếp",K10+"1.000 kiếp",K10+"7 kiếp","các ác nghiệp do tập khí gây nên","các ác nghiệp thuộc về thân","tội không làm đúng ý Phật","các ác nghiệp do tật đố gây nên","tội sai bảo người khác làm ác nghiệp","các ác nghiệp do kiêu mạn gây nên","tội vu khống","tội vui với ác nghiệp","tội xả bỏ chánh Pháp","tội phạm các giới nguyện"];
+const STATIC={"en": {"eyebrowTop": "The Confession Buddhas", "h1": "Thirty-Five Buddhas", "lead": "For well over a thousand years, Buddhists in Vietnam, China and Tibet have recited these 35 names to let go of harm they have done.", "leadSmall": "You say each name, bow, and resolve to do better. The list comes from a Mahāyāna sutra, the chapter of the <i>Ratnakūṭa</i> in which the Buddha answers his disciple Upāli.", "wTourK": "New here? Start here", "wTourT": "Take the tour", "wTourD": "One minute, five steps. The map lights up as you go.", "wMapK": "Browse", "wMapT": "Explore the map", "wMapD": "Tap any Buddha to see the painting and its meaning.", "wPrK": "Try it · about 10 min", "wPrT": "Practice", "wPrD": "Bow to all 35, one at a time, the way it's done in temples.", "wPlK": "Test yourself · 8 questions", "wPlT": "Matching game", "wPlD": "Match the paintings to their names, with hints.", "above": "Above", "zenith": "zenith", "below": "Below", "nadir": "nadir", "howH": "How to read the map", "howP": "Shakyamuni, the historical Buddha, sits at the center. The other 34 surround him in all ten directions: the eight points of the compass, plus above and below. The arrangement says that awakening is present everywhere.", "howS": "Numbers show the order of recitation. It circles from above, to east, round the compass, then below, three times over. Select any Buddha to see the painting, and use Next to follow the order.", "habH": "Start from a habit", "habS": "Each Buddha is traditionally linked to one kind of harm. Pick something you'd like to let go of.", "powE": "How the practice works", "powH": "Four steps of letting go", "powS": "Tibetan teachers explain the practice through four \"powers\". Reciting the names is the remedy.", "p1h": "Regret", "p1": "Honestly see a harm you caused, the way you'd regret swallowing something bad for you.", "p2h": "Refuge", "p2": "Turn toward the Buddhas as a steady reference point, instead of toward guilt or excuses.", "p3h": "Remedy", "p3": "Do something good to counter it. Here that means saying each name and bowing.", "p4h": "Resolve", "p4": "Decide not to repeat the harm, for a day or for good, in a promise you can keep.", "allE": "In order of recitation", "allH": "All thirty-five", "foot": "Paintings: Vietnamese card set of the 35 Buddhas in Tibetan style; publisher to be credited. English names follow the Sanskrit; realm names are literal translations of the Vietnamese. Texts: the <i>Upāli-paripṛcchā</i> (Taishō 310.24, 325) and the Vietnamese <i>Hồng Danh Sám Hối</i> liturgy.", "fSkt": "Sanskrit", "fZh": "Chinese", "fDir": "Direction", "fRealm": "Realm", "fLook": "In the painting", "purL": "Traditionally said to purify", "prev": "← Previous", "next": "Next →", "prTitle": "Practice · bowing to the 35", "close": "Close", "prH": "Bow to the 35 Buddhas", "prLead": "This is the practice as people do it in temples and at home. You don't need to be Buddhist to try it.", "st1": "Sit or stand comfortably and take three slow breaths.", "st2": "Bring to mind one thing you said or did that you regret.", "st3": "For each Buddha, read the name aloud or silently, then bow or lower your head. Tap <b>Bow</b> to move on.", "st4": "At the end, resolve to do better and wish others well.", "begin": "Begin", "back": "Back", "bow": "Bow", "tip": "Tip: press the space bar to bow.", "doneH": "You've bowed to all thirty-five.", "doneLead": "The practice traditionally ends by dedicating its goodness to everyone. Take a breath, picture someone you care about, and someone you find difficult, and wish them both well.", "again": "Start again", "toMap": "Back to the map", "gameTitle": "Matching game", "hintBtn": "Show a hint", "scoreE": "Your score", "reviewL": "Take another look at these:", "playAgain": "Play again"}, "vi": {"eyebrowTop": "Các vị Phật Sám Hối", "h1": "Ba Mươi Lăm Vị Phật", "lead": "Hơn một nghìn năm qua, Phật tử ở Việt Nam, Trung Hoa và Tây Tạng đã trì niệm 35 hồng danh này để sám hối những lỗi lầm mình đã gây ra.", "leadSmall": "Với mỗi danh hiệu, ta xưng niệm, đảnh lễ và phát nguyện sống tốt hơn. Danh sách này có nguồn gốc từ kinh Đại thừa, phẩm Ưu Ba Ly Hội trong <i>Kinh Đại Bảo Tích</i>, nơi Đức Phật trả lời câu hỏi của ngài Ưu Ba Ly.", "wTourK": "Lần đầu ghé thăm? Bắt đầu tại đây", "wTourT": "Xem giới thiệu", "wTourD": "Một phút, năm bước. Bản đồ sáng lên theo từng bước.", "wMapK": "Khám phá", "wMapT": "Xem bản đồ", "wMapD": "Chạm vào một vị Phật để xem tranh và ý nghĩa.", "wPrK": "Thực hành · khoảng 10 phút", "wPrT": "Lạy sám hối", "wPrD": "Lần lượt đảnh lễ đủ 35 vị, như cách thực hành ở chùa.", "wPlK": "Tự kiểm tra · 8 câu hỏi", "wPlT": "Trò chơi ghép tranh", "wPlD": "Ghép tranh với danh hiệu, có gợi ý.", "above": "Thượng phương", "zenith": "phía trên", "below": "Hạ phương", "nadir": "phía dưới", "howH": "Cách đọc bản đồ", "howP": "Đức Phật Thích Ca, vị Phật lịch sử, ở trung tâm. 34 vị còn lại bao quanh Ngài khắp mười phương: tám hướng của la bàn, cùng phương trên và phương dưới. Cách sắp đặt này nói rằng giác ngộ có mặt ở khắp nơi.", "howS": "Các con số cho biết thứ tự trì niệm: từ phương trên, sang phương Đông, đi vòng la bàn rồi xuống phương dưới, lặp lại ba vòng. Chọn một vị Phật để xem tranh, và bấm Tiếp để đi theo thứ tự.", "habH": "Bắt đầu từ một thói quen", "habS": "Theo truyền thống, mỗi vị Phật gắn với một loại lỗi lầm. Hãy chọn điều bạn muốn buông bỏ.", "powE": "Cách thực hành", "powH": "Bốn bước buông bỏ", "powS": "Các vị thầy Tây Tạng giảng pháp hành này qua bốn “lực”. Xưng niệm hồng danh chính là pháp đối trị.", "p1h": "Hối hận", "p1": "Thành thật nhìn lại lỗi lầm mình đã gây ra, như hối hận khi lỡ nuốt phải thứ có hại.", "p2h": "Quy y", "p2": "Hướng về chư Phật như một điểm tựa vững chãi, thay vì mặc cảm hay biện hộ.", "p3h": "Đối trị", "p3": "Làm điều thiện để hóa giải. Ở đây là xưng danh hiệu và đảnh lễ từng vị Phật.", "p4h": "Phát nguyện", "p4": "Quyết tâm không tái phạm, trong một ngày hay mãi mãi, bằng một lời hứa mình giữ được.", "allE": "Theo thứ tự trì niệm", "allH": "Đủ ba mươi lăm vị", "foot": "Tranh: bộ thẻ 35 vị Phật theo phong cách Tây Tạng, chú thích tiếng Việt; sẽ ghi nguồn nhà xuất bản. Tên tiếng Anh dịch theo tiếng Phạn. Kinh văn: phẩm Ưu Ba Ly Hội (Đại Chánh tạng 310.24, 325) và nghi thức <i>Hồng Danh Sám Hối</i>.", "fSkt": "Tiếng Phạn", "fZh": "Chữ Hán", "fDir": "Phương", "fRealm": "Thế giới", "fLook": "Trong tranh", "purL": "Quy y Ngài, con diệt được", "prev": "← Trước", "next": "Tiếp →", "prTitle": "Thực hành · lạy 35 vị Phật", "close": "Đóng", "prH": "Đảnh lễ 35 vị Phật", "prLead": "Đây là cách mọi người thực hành ở chùa và tại gia. Bạn không cần là Phật tử để thử.", "st1": "Ngồi hoặc đứng thoải mái, hít thở chậm ba lần.", "st2": "Nhớ lại một lời nói hay việc làm khiến bạn hối tiếc.", "st3": "Với mỗi vị Phật, đọc danh hiệu thành tiếng hoặc thầm, rồi lạy hoặc cúi đầu. Bấm <b>Lạy</b> để tiếp tục.", "st4": "Cuối cùng, phát nguyện sống tốt hơn và cầu chúc mọi người an lành.", "begin": "Bắt đầu", "back": "Lùi lại", "bow": "Lạy", "tip": "Mẹo: nhấn phím cách (space) để lạy.", "doneH": "Bạn đã đảnh lễ đủ ba mươi lăm vị Phật.", "doneLead": "Theo truyền thống, buổi lễ kết thúc bằng việc hồi hướng công đức đến mọi người. Hãy hít một hơi, nghĩ đến một người bạn thương và một người bạn thấy khó gần, rồi cầu chúc cả hai được an lành.", "again": "Lạy lại từ đầu", "toMap": "Về bản đồ", "gameTitle": "Trò chơi ghép tranh", "hintBtn": "Xem gợi ý", "scoreE": "Điểm của bạn", "reviewL": "Hãy xem lại các vị này:", "playAgain": "Chơi lại"}};
+const DIR={C:["Center","Trung tâm"],U:["Above","Thượng phương"],D:["Below","Hạ phương"],E:["East","Đông phương"],SE:["Southeast","Đông Nam phương"],S:["South","Nam phương"],SW:["Southwest","Tây Nam phương"],W:["West","Tây phương"],NW:["Northwest","Tây Bắc phương"],N:["North","Bắc phương"],NE:["Northeast","Đông Bắc phương"]};
+const COMPASS_LBL={en:{N:"NORTH",E:"EAST",S:"SOUTH",W:"WEST"},vi:{N:"BẮC",E:"ĐÔNG",S:"NAM",W:"TÂY"}};
+const ANG={N:-90,NE:-45,E:0,SE:45,S:90,SW:135,W:180,NW:-135};
+const RAD=[31,48,65,82]; // diameter % of the compass, by round
+const HABITS=[["anger","Anger","Sân hận","anger","sân hận"],["craving","Craving","Tham ái","craving","tham ái"],["jealousy","Jealousy","Tật đố","jealousy","tật đố"],["pride","Pride","Kiêu mạn","pride","kiêu mạn"],["habits","Old habits","Tập khí","old habits","tập khí"],["speech","Harsh speech","Lời nói ác","harsh speech","lời nói ác"],["body","Harmful actions","Việc làm ác","harmful actions","việc làm ác"],["mind","Harmful thoughts","Ý nghĩ ác","harmful thoughts","ý nghĩ ác"]];
+const HAB=Object.fromEntries(HABITS.map(h=>[h[0],h]));
+const img=n=>`img/${String(n).padStart(2,"0")}.jpg`, thumb=n=>`img/${String(n).padStart(2,"0")}t.jpg`;
+const byN=Object.fromEntries(B.map(b=>[b[0],b]));
+const $=id=>document.getElementById(id);
+
+// ---------- Language ----------
+let L="en";
+try{const saved=localStorage.getItem("lang"); if(saved==="vi"||saved==="en") L=saved; else if((navigator.language||"").toLowerCase().startsWith("vi")) L="vi";}catch(e){}
+if(location.hash==="#vi") L="vi"; if(location.hash==="#en") L="en";
+const VI=()=>L==="vi";
+const cap1=x=>x.charAt(0).toUpperCase()+x.slice(1);
+const nameOf=b=>VI()?`${b[3]} Phật`:b[1];
+const dirOf=d=>VI()?DIR[d][1]:DIR[d][0];
+const lookOf=b=>VI()?LOOK_VI[b[0]]:b[8];
+const purOf=b=>VI()?CAP_VI[b[0]]:b[9];
+const habLabel=k=>VI()?HAB[k][2]:HAB[k][1];
+const habWord=k=>VI()?HAB[k][4]:HAB[k][3];
+const T={
+  en:{title:"Thirty-Five Buddhas",tbLabel:b=>`${b[0]}. ${b[1]} (${b[3]} Phật), ${DIR[b[5]][0]}`,
+      listSub:b=>`${b[3]} Phật · ${DIR[b[5]][0]}`,
+      hint:b=>`<a href="#b${b[0]}" data-n="${b[0]}">${b[0]}. ${b[1]}</a> (${DIR[b[5]][0].toLowerCase()}) purifies ${b[9]}.`,
+      eyebrow:n=>`Buddha ${n} of 35`, sub:b=>`Nam Mô ${b[3]} Phật`, realm:b=>`${b[7]} <span class="small">(${b[6]} Thế Giới)</span>`,
+      tourStep:(i,n)=>`Tour · step ${i} of ${n}`, next:"Next", finish:"Finish",
+      steps:[
+        ["Meet Shakyamuni","At the center is Shakyamuni, the historical Buddha, who lived in India about 2,500 years ago. He leads the other 34.","Number 1 · center"],
+        ["Buddhas in every direction","The other 34 sit around him in ten directions: the eight points of the compass, plus above and below. The idea is that awakening isn't in one place. It's everywhere."],
+        ["The order of recitation","People say the names in a fixed order. Watch it move: from above, to the east, round the compass, then below. It goes round three times."],
+        ["Every Buddha is different","Each one has its own color, an object it holds, and a kind of harm it helps you let go of. Number 29 holds a red victory banner and is linked to letting go of jealousy.","Number 29 · North"],
+        ["Your turn","Tap any Buddha on the map, try the practice yourself, or test what you've learned."]],
+      dirCount:(d,n)=>`<b>${DIR[d][0]}</b> · ${n} Buddhas`, replay:"Replay", open29:"Open number 29", tryPr:"Try the practice", tryPl:"Play the matching game",
+      prEn:b=>`${b[0]}. ${b[1]} · ${DIR[b[5]][0]}`, prPur:b=>`Traditionally said to purify ${b[9]}.`,
+      took:m=>`That took about ${m} minute${m>1?"s":""}.`,
+      gTitle:(i,n,s)=>`Matching game · question ${i} of ${n} · score ${s}`, who:"Who is this?",
+      which:k=>`Which Buddha helps you let go of ${HAB[k][3]}?`,
+      hintName:b=>`Hint: this Buddha sits in the <b>${DIR[b[5]][0].toLowerCase()}</b>. ${b[8]}.`, hintPick:b=>`Hint: look for this: ${b[8].toLowerCase()}.`,
+      right:"Right.", wrong:"Not quite.",
+      fact:b=>`${b[1]} (${b[3]} Phật) is number ${b[0]}. ${b[0]===1?"He sits at the center":`This Buddha sits in the ${DIR[b[5]][0].toLowerCase()}`}. In the painting: ${b[8].toLowerCase()}.`,
+      gNext:"Next", gSee:"See my score",
+      msg:(s,n)=>s===n?"Perfect. You know them well.":s>=5?"Good eye. Each round picks new Buddhas.":"A good start. The hints help a lot, and each round picks new Buddhas.",
+      paint:b=>`Painting of ${b[1]}`},
+  vi:{title:"Ba Mươi Lăm Vị Phật",tbLabel:b=>`${b[0]}. ${b[3]} Phật, ${DIR[b[5]][1]}`,
+      listSub:b=>`${GLOSS_VI[b[0]]} · ${DIR[b[5]][1]}`,
+      hint:b=>`<a href="#b${b[0]}" data-n="${b[0]}">${b[0]}. ${b[3]} Phật</a> (${DIR[b[5]][1]}): con diệt được ${CAP_VI[b[0]]}.`,
+      eyebrow:n=>`Vị Phật thứ ${n} / 35`, sub:b=>GLOSS_VI[b[0]], realm:b=>`${b[6]} Thế Giới <span class="small">(${b[7]})</span>`,
+      tourStep:(i,n)=>`Giới thiệu · bước ${i} / ${n}`, next:"Tiếp", finish:"Xong",
+      steps:[
+        ["Đức Phật Thích Ca","Ở trung tâm là Đức Phật Thích Ca, vị Phật lịch sử sống ở Ấn Độ khoảng 2.500 năm trước. Ngài dẫn đầu 34 vị còn lại.","Vị số 1 · trung tâm"],
+        ["Chư Phật khắp mười phương","34 vị còn lại ở quanh Ngài trong mười phương: tám hướng của la bàn, cùng phương trên và phương dưới. Ý nghĩa là giác ngộ không ở riêng một nơi nào, mà ở khắp mọi nơi."],
+        ["Thứ tự trì niệm","Hồng danh được xưng theo một thứ tự cố định. Hãy xem: từ phương trên, sang phương Đông, đi vòng la bàn, rồi xuống phương dưới. Lặp lại ba vòng."],
+        ["Mỗi vị Phật một vẻ","Mỗi vị có màu thân, vật cầm tay riêng, và giúp ta buông bỏ một loại lỗi lầm. Vị số 29 cầm cờ chiến thắng màu đỏ, gắn với việc buông bỏ tật đố.","Vị số 29 · Bắc phương"],
+        ["Đến lượt bạn","Chạm vào một vị Phật trên bản đồ, thử lạy sám hối, hoặc kiểm tra những gì bạn vừa học."]],
+      dirCount:(d,n)=>`<b>${DIR[d][1]}</b> · ${n} vị Phật`, replay:"Xem lại", open29:"Mở vị số 29", tryPr:"Thử lạy sám hối", tryPl:"Chơi trò ghép tranh",
+      prEn:b=>`${b[0]}. ${GLOSS_VI[b[0]]} · ${DIR[b[5]][1]}`, prPur:b=>`Quy y Ngài, con diệt được ${CAP_VI[b[0]]}.`,
+      took:m=>`Bạn đã thực hành khoảng ${m} phút.`,
+      gTitle:(i,n,s)=>`Trò chơi ghép tranh · câu ${i} / ${n} · điểm ${s}`, who:"Đây là vị Phật nào?",
+      which:k=>`Vị Phật nào giúp bạn buông bỏ ${HAB[k][4]}?`,
+      hintName:b=>`Gợi ý: vị Phật này ở <b>${DIR[b[5]][1]}</b>. ${LOOK_VI[b[0]]}.`, hintPick:b=>`Gợi ý: hãy tìm vị có ${LOOK_VI[b[0]].charAt(0).toLowerCase()+LOOK_VI[b[0]].slice(1)}.`,
+      right:"Đúng rồi.", wrong:"Chưa đúng.",
+      fact:b=>`${b[3]} Phật (${GLOSS_VI[b[0]].toLowerCase()}) là vị thứ ${b[0]}. ${b[0]===1?"Ngài ở trung tâm":`Ngài ở ${DIR[b[5]][1]}`}. Trong tranh: ${LOOK_VI[b[0]].charAt(0).toLowerCase()+LOOK_VI[b[0]].slice(1)}.`,
+      gNext:"Tiếp", gSee:"Xem điểm",
+      msg:(s,n)=>s===n?"Hoàn hảo. Bạn đã nhớ hết các Ngài.":s>=5?"Tinh mắt lắm. Mỗi lượt chơi sẽ có các vị Phật mới.":"Khởi đầu tốt. Gợi ý giúp ích nhiều, và mỗi lượt chơi có các vị Phật mới.",
+      paint:b=>`Tranh ${b[3]} Phật`}
+};
+const t=k=>T[L][k];
+
+// ---------- Map ----------
+function tbButton(b,cls){
+  const el=document.createElement("button");
+  el.className="tb"+(cls?" "+cls:""); el.dataset.n=b[0];
+  el.innerHTML=`<img src="${thumb(b[0])}" alt="" loading="lazy" width="200" height="200"><span class="num">${b[0]}</span>`;
+  el.addEventListener("click",()=>openB(b[0]));
+  return el;
+}
+const svg=$("compassSvg");
+function drawCompass(){
+  let s=`<circle class="halo" cx="50" cy="50" r="10"/>`;
+  RAD.forEach(r=>s+=`<circle class="ring" cx="50" cy="50" r="${r/2}"/>`);
+  Object.entries(ANG).forEach(([k,a])=>{const q=a*Math.PI/180;s+=`<line class="spoke" x1="${50+9*Math.cos(q)}" y1="${50+9*Math.sin(q)}" x2="${50+46*Math.cos(q)}" y2="${50+46*Math.sin(q)}"/>`;});
+  [["N",50,1.2,"middle"],["E",99.5,51.3,"end"],["S",50,99.6,"middle"],["W",0.5,51.3,"start"]].forEach(([l,x,y,a])=>s+=`<text x="${x}" y="${y}" text-anchor="${a}" font-size="3.2">${COMPASS_LBL[L][l]}</text>`);
+  svg.innerHTML=s;
+}
+const compass=$("compass"), map=$("map");
+const round={};
+B.forEach(b=>{
+  const d=b[5];
+  if(d==="C"){const el=tbButton(b,"center");el.style.left="50%";el.style.top="50%";compass.appendChild(el);return;}
+  if(d==="U"||d==="D"){document.querySelector(`#${d==="U"?"above":"below"} .row`).appendChild(tbButton(b));return;}
+  const i=round[d]=(round[d]||0); round[d]++;
+  const r=RAD[i]/2, q=ANG[d]*Math.PI/180;
+  const el=tbButton(b); el.style.left=(50+r*Math.cos(q))+"%"; el.style.top=(50+r*Math.sin(q))+"%";
+  compass.appendChild(el);
+});
+const tbs=()=>[...map.querySelectorAll(".tb")];
+const list=$("list");
+function renderList(){
+  list.innerHTML="";
+  B.forEach(b=>{const li=document.createElement("li");
+    li.innerHTML=`<button data-n="${b[0]}"><img src="${thumb(b[0])}" alt="" loading="lazy" width="52" height="52"><span><span class="en"><span class="n">${b[0]}</span>${nameOf(b)}</span><span class="vi">${t("listSub")(b)}</span></span></button>`;
+    li.firstChild.addEventListener("click",()=>openB(b[0])); list.appendChild(li);});
+}
+// Habits
+const chips=$("chips"), hint=$("hint");
+let active=null;
+HABITS.forEach(([k])=>{const c=document.createElement("button");c.className="chip";c.setAttribute("aria-pressed","false");c.dataset.k=k;
+  c.addEventListener("click",()=>{active=active===k?null:k;showHabit();});chips.appendChild(c);});
+function showHabit(){
+  chips.querySelectorAll(".chip").forEach(x=>x.setAttribute("aria-pressed",x.dataset.k===active?"true":"false"));
+  map.classList.toggle("dim",!!active);
+  tbs().forEach(x=>x.classList.toggle("hit",!!active&&byN[x.dataset.n][10]===active));
+  if(!active){hint.textContent="";return;}
+  hint.innerHTML=B.filter(b=>b[10]===active).map(b=>t("hint")(b)).join(" ");
+  hint.querySelectorAll("a").forEach(a=>a.addEventListener("click",e=>{e.preventDefault();openB(+a.dataset.n);}));
+}
+// Detail dialog
+const dlg=$("dlg"); let cur=1;
+function fill(n){
+  const b=byN[n]; cur=n;
+  $("dImg").src=img(n); $("dImg").alt=t("paint")(b);
+  $("dEyebrow").textContent=t("eyebrow")(n);
+  $("dName").textContent=nameOf(b);
+  $("dVi").textContent=t("sub")(b);
+  $("dSkt").textContent=b[2]; $("dZh").textContent=b[4];
+  $("dDir").textContent=VI()?DIR[b[5]][1]:`${DIR[b[5]][0]} · ${DIR[b[5]][1]}`;
+  $("dRealm").innerHTML=t("realm")(b);
+  $("dLook").textContent=lookOf(b);
+  $("dPur").textContent=cap1(purOf(b));
+  $("dPos").textContent=`${n} / 35`;
+  $("dPrev").disabled=n===1; $("dNext").disabled=n===35;
+  try{history.replaceState(null,"","#b"+n);}catch(e){}
+}
+function openB(n){fill(n); if(!dlg.open) dlg.showModal();}
+$("dPrev").onclick=()=>cur>1&&fill(cur-1);
+$("dNext").onclick=()=>cur<35&&fill(cur+1);
+$("dClose").onclick=()=>dlg.close();
+dlg.addEventListener("click",e=>{if(e.target===dlg)dlg.close();});
+dlg.addEventListener("close",()=>{try{history.replaceState(null,"",location.pathname+location.search);}catch(e){}});
+dlg.addEventListener("keydown",e=>{if(e.key==="ArrowRight"&&cur<35)fill(cur+1); if(e.key==="ArrowLeft"&&cur>1)fill(cur-1);});
+
+// ---------- Shared map helpers ----------
+function clearMap(){
+  map.classList.remove("dim","tour");
+  tbs().forEach(x=>x.classList.remove("hit","now","done"));
+  active=null; showHabit();
+}
+function light(ns,cls="hit"){ns=new Set(ns);tbs().forEach(x=>x.classList.toggle(cls,ns.has(+x.dataset.n)));}
+const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+const shuffle=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
+
+// ---------- Tour ----------
+const coach=$("coach"); let step=0, timer=null;
+const DIR_ORDER=["U","E","SE","S","SW","W","NW","N","NE","D"];
+function stopTimer(){clearInterval(timer);timer=null;}
+function playOrder(){
+  stopTimer(); map.classList.add("dim","tour"); tbs().forEach(x=>x.classList.remove("hit","now","done"));
+  let i=0;
+  const tick=()=>{
+    i++; const b=byN[i];
+    tbs().forEach(x=>{const n=+x.dataset.n;x.classList.toggle("now",n===i);x.classList.toggle("done",n<i);});
+    $("cNow").innerHTML=`<b>${i}</b> · ${nameOf(b)} · ${dirOf(b[5])}`;
+    if(i>=35){stopTimer();setTimeout(()=>tbs().forEach(x=>x.classList.remove("now")),700);}
+  };
+  if(reduce){i=34;tick();return;}
+  tick(); timer=setInterval(tick,330);
+}
+const STEP_RUN=[
+  ()=>{map.classList.add("dim");light([1]);$("cNow").textContent=t("steps")[0][2];},
+  ()=>{map.classList.add("dim");let k=0;const show=()=>{const d=DIR_ORDER[k%10];const ns=B.filter(b=>b[5]===d).map(b=>b[0]);light(ns);$("cNow").innerHTML=t("dirCount")(d,ns.length);k++;};show();if(!reduce)timer=setInterval(show,1100);},
+  ()=>playOrder(),
+  ()=>{map.classList.add("dim");light([29]);$("cNow").textContent=t("steps")[3][2];},
+  ()=>{$("cNow").textContent="";}
+];
+const STEP_EXTRA=[null,null,()=>[[t("replay"),()=>playOrder()]],()=>[[t("open29"),()=>openB(29)]],()=>[[t("tryPr"),()=>{endTour();openPractice();},true],[t("tryPl"),()=>{endTour();openGame();},true]]];
+function renderStep(){
+  stopTimer(); clearMap(); const s=t("steps")[step], n=STEP_RUN.length;
+  $("cStep").textContent=t("tourStep")(step+1,n); $("cTitle").textContent=s[0]; $("cText").textContent=s[1]; $("cNow").textContent="";
+  const ex=$("cExtra"); ex.innerHTML=""; const extra=STEP_EXTRA[step]&&STEP_EXTRA[step]();
+  (extra||[]).forEach(([l,f,solid])=>{const b=document.createElement("button");b.className="btn"+(solid?" solid":"");b.textContent=l;b.onclick=f;ex.appendChild(b);});
+  ex.hidden=!extra;
+  $("cDots").innerHTML=STEP_RUN.map((_,i)=>`<i class="${i<=step?"on":""}"></i>`).join("");
+  $("cBack").disabled=step===0; $("cNext").textContent=step===n-1?t("finish"):t("next");
+  STEP_RUN[step]();
+}
+function startTour(){step=0;coach.hidden=false;map.scrollIntoView({behavior:reduce?"auto":"smooth",block:"start"});renderStep();$("cNext").focus({preventScroll:true});}
+function endTour(){stopTimer();clearMap();coach.hidden=true;}
+function endTourIfOpen(){if(!coach.hidden)endTour();}
+$("cNext").onclick=()=>{if(step<STEP_RUN.length-1){step++;renderStep();}else endTour();};
+$("cBack").onclick=()=>{if(step>0){step--;renderStep();}};
+$("cClose").onclick=endTour;
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!coach.hidden&&!document.querySelector("dialog[open]"))endTour();});
+
+// ---------- Practice ----------
+const prac=$("prac"); let pi=1, t0=0, busy=false;
+function pShow(id){["pIntro","pRun","pDone"].forEach(x=>$(x).hidden=x!==id);}
+function openPractice(){endTourIfOpen();pShow("pIntro");if(!prac.open)prac.showModal();$("pStart").focus();}
+function pRender(){
+  const b=byN[pi];
+  $("pArt").src=img(pi); $("pArt").alt=t("paint")(b);
+  $("pVi").textContent=`Nam Mô ${b[3]} Phật`;
+  $("pEn").textContent=t("prEn")(b);
+  $("pPur").textContent=t("prPur")(b);
+  $("pCount").textContent=`${pi}/35`;
+  $("pRing").style.strokeDashoffset=175.9*(1-(pi-1)/35);
+  $("pPrev").disabled=pi===1;
+  if(pi<35){const n=new Image();n.src=img(pi+1);}
+}
+$("pStart").onclick=()=>{pi=1;t0=Date.now();pShow("pRun");pRender();$("pBow").focus();};
+$("pBow").onclick=()=>{
+  if(busy)return; busy=true; $("pArtBox").classList.add("bowing");
+  setTimeout(()=>{
+    if(pi===35){$("pRing").style.strokeDashoffset=0;const m=Math.max(1,Math.round((Date.now()-t0)/60000));$("pTime").textContent=t("took")(m);pShow("pDone");$("pArtBox").classList.remove("bowing");busy=false;$("pBack").focus();return;}
+    pi++; pRender(); requestAnimationFrame(()=>{$("pArtBox").classList.remove("bowing");busy=false;}); $("pBow").focus();
+  },reduce?0:450);
+};
+$("pPrev").onclick=()=>{if(pi>1){pi--;pRender();$("pBow").focus();}};
+$("pAgain").onclick=()=>$("pStart").onclick();
+$("pBack").onclick=()=>prac.close();
+$("pExit").onclick=()=>prac.close();
+
+// ---------- Matching game ----------
+const game=$("game"); const QHAB=["anger","craving","jealousy","pride","habits","body","mind"];
+let Q=[], qi=0, score=0, missed=[];
+function buildQuiz(){
+  const typeB=shuffle(B.filter(b=>QHAB.includes(b[10]))).slice(0,2).map(b=>({type:"pick",ans:b[0]}));
+  const used=new Set(typeB.map(q=>q.ans));
+  const typeA=shuffle(B.filter(b=>!used.has(b[0]))).slice(0,6).map(b=>({type:"name",ans:b[0]}));
+  const q=[...typeA.slice(0,3),typeB[0],...typeA.slice(3),typeB[1]];
+  return q.map(x=>{
+    const pool=shuffle(B.filter(b=>b[0]!==x.ans&&(x.type==="name"||b[10]!==byN[x.ans][10]))).slice(0,2).map(b=>b[0]);
+    return {...x,opts:shuffle([x.ans,...pool])};
+  });
+}
+function openGame(){endTourIfOpen();Q=buildQuiz();qi=0;score=0;missed=[];$("gEnd").hidden=true;$("gRun").hidden=false;gRender();if(!game.open)game.showModal();}
+function gRender(){
+  const q=Q[qi], b=byN[q.ans];
+  $("gTitle").textContent=t("gTitle")(qi+1,Q.length,score);
+  $("gFb").innerHTML=""; $("gNext").hidden=true; $("gHint").hidden=false; $("gHint").disabled=false;
+  const opts=$("gOpts"); opts.innerHTML="";
+  if(q.type==="name"){
+    $("gQ").textContent=t("who"); $("gArtBox").hidden=false; $("gArt").src=img(q.ans); $("gArt").alt="";
+    opts.className="g-opts";
+    q.opts.forEach(n=>{const o=document.createElement("button");o.className="opt";o.dataset.n=n;
+      o.innerHTML=VI()?`<span class="en">${byN[n][3]} Phật</span><span class="vi">${GLOSS_VI[n]}</span>`:`<span class="en">${byN[n][1]}</span><span class="vi">${byN[n][3]} Phật</span>`;
+      o.onclick=()=>answer(n);opts.appendChild(o);});
+  }else{
+    $("gQ").textContent=t("which")(b[10]); $("gArtBox").hidden=true;
+    opts.className="g-opts pics";
+    q.opts.forEach(n=>{const o=document.createElement("button");o.className="opt pic";o.dataset.n=n;o.setAttribute("aria-label",nameOf(byN[n]));o.innerHTML=`<img src="${img(n)}" alt="">`;o.onclick=()=>answer(n);opts.appendChild(o);});
+  }
+  const f=opts.querySelector("button"); if(f) f.focus();
+}
+$("gHint").onclick=()=>{const q=Q[qi],b=byN[q.ans];$("gHint").disabled=true;
+  $("gFb").innerHTML=q.type==="name"?t("hintName")(b):t("hintPick")(b);};
+function answer(n){
+  const q=Q[qi], b=byN[q.ans], ok=n===q.ans;
+  $("gOpts").querySelectorAll(".opt").forEach(o=>{o.disabled=true;const k=+o.dataset.n;if(k===q.ans)o.classList.add("right");else if(k===n)o.classList.add("wrong");});
+  if(ok)score++; else missed.push(q.ans);
+  $("gFb").innerHTML=(ok?`<b class="ok">${t("right")}</b> `:`<b class="no">${t("wrong")}</b> `)+t("fact")(b);
+  $("gHint").hidden=true; $("gNext").hidden=false; $("gNext").textContent=qi===Q.length-1?t("gSee"):t("gNext");
+  $("gTitle").textContent=t("gTitle")(qi+1,Q.length,score);
+  $("gNext").focus();
+}
+$("gNext").onclick=()=>{if(qi<Q.length-1){qi++;gRender();}else gEnd();};
+function gEnd(){
+  $("gRun").hidden=true;$("gEnd").hidden=false;
+  $("gScore").textContent=`${score} / ${Q.length}`;
+  $("gMsg").textContent=t("msg")(score,Q.length);
+  $("gReviewWrap").hidden=!missed.length;
+  $("gReview").innerHTML=missed.map(n=>`<button data-n="${n}"><img src="${thumb(n)}" alt="">${VI()?byN[n][3]:byN[n][1]}</button>`).join("");
+  $("gReview").querySelectorAll("button").forEach(x=>x.onclick=()=>{game.close();openB(+x.dataset.n);});
+  $("gAgain").focus();
+}
+$("gAgain").onclick=openGame;
+$("gBack").onclick=()=>game.close();
+$("gExit").onclick=()=>game.close();
+
+// ---------- Ways in ----------
+$("goTour").onclick=startTour;
+$("goMap").onclick=()=>{endTourIfOpen();map.scrollIntoView({behavior:reduce?"auto":"smooth",block:"start"});};
+$("goPractice").onclick=openPractice;
+$("goPlay").onclick=openGame;
+
+// ---------- Apply language ----------
+function applyLang(){
+  document.documentElement.lang=L; document.title=t("title");
+  document.querySelectorAll("[data-i]").forEach(el=>{const v=STATIC[L][el.dataset.i]; if(v!=null) el.innerHTML=v;});
+  $("lEn").setAttribute("aria-pressed",L==="en"); $("lVi").setAttribute("aria-pressed",L==="vi");
+  drawCompass(); renderList();
+  tbs().forEach(x=>{const b=byN[x.dataset.n];x.setAttribute("aria-label",t("tbLabel")(b));x.title=`${b[0]}. ${nameOf(b)}`;});
+  chips.querySelectorAll(".chip").forEach(c=>c.textContent=habLabel(c.dataset.k));
+  showHabit();
+  if(!coach.hidden) renderStep();
+}
+function setLang(l){L=l;try{localStorage.setItem("lang",l);}catch(e){}applyLang();}
+$("lEn").onclick=()=>setLang("en");
+$("lVi").onclick=()=>setLang("vi");
+applyLang();
+
+const h=location.hash, m=/^#b(\d{1,2})$/.exec(h);
+if(m&&byN[+m[1]]) openB(+m[1]);
+else if(h==="#tour") startTour();
+else if(h==="#practice") openPractice();
+else if(h==="#play") openGame();
+</script>
+
+</body>
+</html>
